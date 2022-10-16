@@ -1,0 +1,90 @@
+.container {
+  background-color: #335773;
+  margin: 54px auto;
+  width: 60%;
+  padding: 0 1em;
+}
+
+.headingContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  font-size: 1.8em;
+}
+
+.previousHash {
+  position: relative;
+  color: black;
+  top: -14px;
+  width: 70%;
+  text-align: center;
+  display: block;
+  background: #c6c6c6;
+  padding: 4px 12px;
+  font-weight: bold;
+  margin: -12px auto;
+}
+
+.currentHash {
+  position: relative;
+  color: black;
+  bottom: -14px;
+  width: 70%;
+  text-align: center;
+  display: block;
+  background: #c6c6c6;
+  padding: 4px 12px;
+  font-weight: bold;
+  margin: -12px auto;
+}
+
+.title,
+.blockID {
+  margin: 0;
+}
+
+.blockID {
+  margin-top: 8px;
+  font-size: 0.6em;
+}
+
+.blockData {
+  padding: 2em 1em;
+  background: #bddfe9;
+  color: black;
+  margin: 1em 0;
+  position: relative;
+}
+
+.blockDataLabel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 50%;
+  background: white;
+  padding: 6px;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.blockDateLabel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 50%;
+  background: white;
+  padding: 6px;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-align: right;
+}
+
+.footerContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  font-size: 1em;
+  margin: 0 0 16px;
+}
