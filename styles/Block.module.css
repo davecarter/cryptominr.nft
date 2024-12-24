@@ -1,7 +1,8 @@
 .container {
   background-color: #335773;
-  margin: 54px auto;
-  padding: 0 1em;
+  margin: 54px auto 64px;
+  padding: 1em;
+  position: relative;
   width: 80%;
 }
 
@@ -10,32 +11,51 @@
   align-items: flex-start;
   justify-content: space-between;
   font-size: 1.8em;
+  padding: 16px 0 0;
+}
+
+.previousHashContainer,
+.currentHashContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  font-size: 1em;
 }
 
 .previousHash {
-  position: relative;
   color: black;
-  top: -14px;
-  width: 70%;
-  text-align: center;
-  display: block;
-  background: #c6c6c6;
-  padding: 4px 12px;
+  width: 100%;
+  background: #7fda9b;
+  padding: 12px;
   font-weight: bold;
-  margin: -12px auto;
+  flex-basis: 15%;
+}
+
+.previousHashData {
+  color: black;
+  width: 100%;
+  background: #c6c6c6;
+  padding: 12px;
+  font-weight: bold;
+  flex-basis: 85%;
 }
 
 .currentHash {
-  position: relative;
   color: black;
-  bottom: -14px;
-  width: 70%;
-  text-align: center;
-  display: block;
-  background: #c6c6c6;
-  padding: 4px 12px;
+  width: 100%;
+  background: #7fda9b;
+  padding: 12px;
   font-weight: bold;
-  margin: -12px auto;
+  flex-basis: 15%;
+}
+
+.currentHashData {
+  color: black;
+  width: 100%;
+  background: #c6c6c6;
+  padding: 12px;
+  font-weight: bold;
+  flex-basis: 85%;
 }
 
 .title,
@@ -79,6 +99,39 @@
   font-size: 0.8em;
   font-weight: bold;
   text-align: right;
+}
+
+.blockDataInput {
+  padding: 2em 1em;
+  background: #bddfe9;
+  color: black;
+  margin: 1em 0;
+  position: relative;
+  resize: none;
+  border: none;
+  width: 100%;
+}
+
+.blockDataInput:focus {
+  outline: none;
+}
+
+.mineButtonContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 1em;
+  margin: 26px 0 8px;
+}
+
+.mineButton {
+  background: #49ee6c;
+  color: black;
+  padding: 1em;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .footerContainer {
