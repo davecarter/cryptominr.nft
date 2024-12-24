@@ -7,22 +7,10 @@
 // More about using minimal API Surface Area pattern
 // https://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html
 
-const interOP = (fn, name) => () => fn().then((mod) => mod[name])
+import * as blockchainUseCases from "./blockchain/useCases"
+
 const useCases = {
-  connectWalletUseCase: interOP(() => import("./blockchain/useCases/ConnectWalletUseCase.js"), "ConnectWalletUseCase"),
-  disconnectWalletUseCase: interOP(
-    () => import("./blockchain/useCases/DisconnectWalletUseCase.js"),
-    "DisconnectWalletUseCase"
-  ),
-  getInjectedProviderUseCase: interOP(
-    () => import("./blockchain/useCases/GetInjectedProviderUseCase.js"),
-    "GetInjectedProviderUseCase"
-  ),
-  handleSwitchChainUseCase: interOP(
-    () => import("./blockchain/useCases/HandleSwitchChainUseCase.js"),
-    "HandleSwitchChainUseCase"
-  ),
-  getBlocksUseCase: interOP(() => import("./blockchain/useCases/GetBlocksUseCase.js"), "GetBlocksUseCase"),
+  ...blockchainUseCases,
 }
 
 export class DomainApp {
@@ -30,32 +18,18 @@ export class DomainApp {
     return new DomainApp()
   }
 
-  get connectWalletUseCase() {
-    return this._getter("connectWalletUseCase")
+  constructor() {
+    Object.entries(useCases).forEach(([key, value]) => {
+      const useCaseName = key.charAt(0).toLowerCase() + key.slice(1)
+      this[useCaseName] = this._getter(value)
+    })
   }
 
-  get disconnectWalletUseCase() {
-    return this._getter("disconnectWalletUseCase")
-  }
-
-  get getInjectedProviderUseCase() {
-    return this._getter("getInjectedProviderUseCase")
-  }
-
-  get handleSwitchChainUseCase() {
-    return this._getter("handleSwitchChainUseCase")
-  }
-
-  get getBlocksUseCase() {
-    return this._getter("getBlocksUseCase")
-  }
-
-  _getter(name) {
+  _getter(useCase) {
     return {
-      async execute() {
-        const klass = await useCases[name]()
-        const response = klass.create().execute(...arguments)
-        return response
+      async execute(...args) {
+        const instance = await useCase.create()
+        return instance.execute(...args)
       },
     }
   }

@@ -1,55 +1,57 @@
-import { useState, useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import styles from "../styles/Home.module.css"
 import { Header } from "components/Header"
-import { TopBar } from "components/TopBar"
 import { Block } from "components/Block"
-import { BlockBuilder } from "components/BlockBuilder"
 import { useDomain } from "components/context"
+import { GENESIS_BLOCK } from "domain/config"
 
 export default function Home() {
   const { domain } = useDomain()
-  const [blocks, setBlocks] = useState()
-  const [lastBlock, setLastBlock] = useState()
-  const [newBlock, setNewBlock] = useState(true)
-  const getBlocks = async () => {
-    const blocks = await domain.getBlocksUseCase.execute()
-    setBlocks(blocks)
+  const [blocks, setBlocks] = useState([])
+
+  // Cargar los bloques desde IndexedDB cuando el componente se monta
+  useEffect(() => {
+    domain.getBlockUseCase.execute().then((blocks) => {
+      setBlocks(blocks)
+    })
+  }, []) // Ejecuta solo al montar
+
+  // Función para agregar un bloque
+  const addBlock = async (updatedBlock) => {
+    const previousBlock = blocks[blocks.length - 1] // Conseguir el último bloque
+    const block = await domain.addNewBlockUseCase.execute({
+      block: {
+        id: blocks.length + 1,
+        title: updatedBlock.title,
+        blockData: updatedBlock.blockData,
+        date: updatedBlock.date,
+        previousHash: previousBlock ? previousBlock.currentHash : "0",
+        currentHash: "PlaceholderHash", // Puedes usar una lógica de hash real aquí
+        nonce: 0,
+        difficulty: 1,
+      },
+    })
+
+    // Después de añadir el bloque, obtener todos los bloques actualizados
+    const updatedBlocks = await domain.getBlockUseCase.execute()
+    setBlocks(updatedBlocks) // Actualiza el estado con los bloques actualizados
   }
-
-  useEffect(() => {
-    getBlocks()
-  }, [])
-
-  useEffect(() => {
-    setLastBlock(blocks?.at(-1))
-  }, [blocks])
 
   return (
     <div className={styles.container}>
       <Header />
-      <TopBar />
       <main className={styles.main}>
         <h1 className={styles.title}>CryptoMinr</h1>
-        {newBlock ? (
-          <button onClick={() => setNewBlock(false)}>Add new Block</button>
-        ) : (
-          <BlockBuilder id={lastBlock.id} previousHash={lastBlock.previousHash} />
-        )}
-        {blocks?.map((block) => (
-          <Block
-            id={block.id}
-            title={block.title}
-            blockData={block.blockData}
-            date={block.date}
-            previousHash={block.previousHash}
-            currentHash={block.currentHash}
-            nonce={block.nonce}
-            difficulty={block.difficulty}
-          />
+        <Block
+          isEditMode={true}
+          onSave={(updatedBlock) => addBlock(updatedBlock)} // Pasamos el bloque editado al guardar
+        />
+        {/* Ya no es necesario el botón Add Block aquí */}
+        {blocks.map((block) => (
+          <Block key={block.id} blockKey={block.id} {...block} />
         ))}
       </main>
-
       <footer className={styles.footer}>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"

@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react"
-import { DomainApp } from "../../domain"
+import { DomainApp } from "../../domain/index"
 const DomainContext = createContext()
 
 function DomainProvider(props) {
