@@ -57,6 +57,7 @@ export const Block = ({
   const [editableCurrentHash, setEditableCurrentHash] = useState(currentHash || "")
   const [editableNonce, setEditableNonce] = useState(nonce || 0)
   const [editableDifficulty, setEditableDifficulty] = useState(difficulty || 1)
+  const [mining, setmining] = useState(false) // Nuevo estado de carga
 
   useEffect(() => {
     const updateHash = async () => {
@@ -72,6 +73,8 @@ export const Block = ({
 
   const handleSave = async () => {
     if (onSave) {
+      setmining(true) // Activamos el estado de carga al empezar a calcular el hash
+
       const blockData = {
         title: editableTitle,
         blockData: editableBlockData,
@@ -92,6 +95,8 @@ export const Block = ({
         nonce: validNonce,
         difficulty: editableDifficulty,
       })
+
+      setmining(false) // Desactivamos el estado de carga cuando se haya terminado
     }
   }
 
@@ -146,13 +151,15 @@ export const Block = ({
         <span className={styles.previousHash}>Previous Hash:</span>
         <span className={styles.previousHashData}>{previousHash}</span>
       </span>
-      {isEditMode && (
+
+      {isEditMode ? (
         <div className={styles.mineButtonContainer}>
-          <button className={styles.mineButton} onClick={handleSave}>
-            Mine Block!
+          {mining && <span className={styles.miningText}>Mining... please wait</span>}
+          <button className={mining ? styles.miningButton : styles.mineButton} onClick={handleSave} disabled={mining}>
+            {!mining && "Mine Block!"}
           </button>
         </div>
-      )}
+      ) : null}
     </div>
   )
 }
