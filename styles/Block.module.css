@@ -12,6 +12,7 @@
   border: none;
   background: transparent;
   font-size: 1.2em;
+  width: 80%;
 }
 
 .headingContainer {
@@ -22,6 +23,17 @@
   padding: 16px 0 0;
 }
 
+@media screen and (max-width: 640px) {
+  .headingContainer {
+    flex-direction: column;
+  }
+
+  .headingContainer input {
+    padding-left: 0;
+    width: 100%;
+  }
+}
+
 .previousHashContainer,
 .currentHashContainer {
   display: flex;
@@ -30,6 +42,7 @@
   font-size: 1em;
 }
 
+.currentHash,
 .previousHash {
   color: black;
   width: 100%;
@@ -37,8 +50,10 @@
   padding: 12px;
   font-weight: bold;
   flex-basis: 15%;
+  min-width: 140px;
 }
 
+.currentHashData,
 .previousHashData {
   color: black;
   width: 100%;
@@ -46,24 +61,8 @@
   padding: 12px;
   font-weight: bold;
   flex-basis: 85%;
-}
-
-.currentHash {
-  color: black;
-  width: 100%;
-  background: #7fda9b;
-  padding: 12px;
-  font-weight: bold;
-  flex-basis: 15%;
-}
-
-.currentHashData {
-  color: black;
-  width: 100%;
-  background: #c6c6c6;
-  padding: 12px;
-  font-weight: bold;
-  flex-basis: 85%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .title,
@@ -110,8 +109,18 @@
   text-align: right;
 }
 
+@media screen and (max-width: 640px) {
+  .blockDataLabel {
+    width: 100%;
+  }
+
+  .blockDateLabel {
+    display: none;
+  }
+}
+
 .blockDataInput {
-  padding: 2em 1em;
+  padding: 2em 0;
   background: #bddfe9;
   color: black;
   margin: 1em 0;
@@ -156,42 +165,34 @@
   position: inherit;
   border: none;
   background: #49ee6c;
-  background-color: -webkit-linear-gradient(
-    -45deg,
-    transparent 25%,
-    #49ee6c 25%,
-    #49ee6c 50%,
-    transparent 50%,
-    transparent 75%,
-    #49ee6c 75%
-  );
-  background: -moz-linear-gradient(
-    -45deg,
-    transparent 25%,
-    #49ee6c 25%,
-    #49ee6c 50%,
-    transparent 50%,
-    transparent 75%,
-    #49ee6c 75%
-  );
-  background: -o-linear-gradient(
-    -45deg,
-    transparent 25%,
-    #49ee6c 25%,
-    #49ee6c 50%,
-    transparent 50%,
-    transparent 75%,
-    #49ee6c 75%
-  );
-  background: linear-gradient(
-    -45deg,
-    transparent 25%,
-    #49ee6c 25%,
-    #49ee6c 50%,
-    transparent 50%,
-    transparent 75%,
-    #49ee6c 75%
-  );
+  background-color: -webkit-linear-gradient(-45deg,
+      transparent 25%,
+      #49ee6c 25%,
+      #49ee6c 50%,
+      transparent 50%,
+      transparent 75%,
+      #49ee6c 75%);
+  background: -moz-linear-gradient(-45deg,
+      transparent 25%,
+      #49ee6c 25%,
+      #49ee6c 50%,
+      transparent 50%,
+      transparent 75%,
+      #49ee6c 75%);
+  background: -o-linear-gradient(-45deg,
+      transparent 25%,
+      #49ee6c 25%,
+      #49ee6c 50%,
+      transparent 50%,
+      transparent 75%,
+      #49ee6c 75%);
+  background: linear-gradient(-45deg,
+      transparent 25%,
+      #49ee6c 25%,
+      #49ee6c 50%,
+      transparent 50%,
+      transparent 75%,
+      #49ee6c 75%);
   color: black;
   font-size: 1em;
   font-weight: bold;
@@ -204,6 +205,7 @@
   from {
     background-position: 0%;
   }
+
   to {
     background-position: 100%;
   }
@@ -213,6 +215,7 @@
   from {
     background-position: 0%;
   }
+
   to {
     background-position: 100%;
   }
@@ -225,4 +228,10 @@
   justify-content: space-between;
   font-size: 1em;
   margin: 0 0 16px;
+}
+
+@media screen and (max-width: 640px) {
+  .footerContainer span:nth-last-child(1) {
+    text-align: right;
+  }
 }

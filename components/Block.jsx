@@ -136,7 +136,7 @@ export const Block = ({
           <>
             <span className={styles.blockDataLabelContainer}>
               <span className={styles.blockDataLabel}>Block data:</span>
-              <span className={styles.blockDateLabel}>Creation date: {date}</span>
+              <span className={styles.blockDateLabel}>{date}</span>
             </span>
             <p>{blockData}</p>
           </>
