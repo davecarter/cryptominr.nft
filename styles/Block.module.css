@@ -1,8 +1,18 @@
 .container {
-  background-color: #335773;
-  margin: 54px auto;
-  width: 60%;
-  padding: 0 1em;
+  background-color: #ffffff;
+  box-shadow: 5px 7px 20px 0px black;
+  margin: 54px auto 64px;
+  padding: 1em;
+  position: relative;
+  width: 80%;
+}
+
+.headingContainer input {
+  color: #000000;
+  border: none;
+  background: transparent;
+  font-size: 1.2em;
+  width: 80%;
 }
 
 .headingContainer {
@@ -10,37 +20,55 @@
   align-items: flex-start;
   justify-content: space-between;
   font-size: 1.8em;
+  padding: 16px 0 0;
 }
 
+@media screen and (max-width: 640px) {
+  .headingContainer {
+    flex-direction: column;
+  }
+
+  .headingContainer input {
+    padding-left: 0;
+    width: 100%;
+  }
+}
+
+.previousHashContainer,
+.currentHashContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  font-size: 1em;
+}
+
+.currentHash,
 .previousHash {
-  position: relative;
   color: black;
-  top: -14px;
-  width: 70%;
-  text-align: center;
-  display: block;
-  background: #c6c6c6;
-  padding: 4px 12px;
+  width: 100%;
+  background: #7fda9b;
+  padding: 12px;
   font-weight: bold;
-  margin: -12px auto;
+  flex-basis: 15%;
+  min-width: 140px;
 }
 
-.currentHash {
-  position: relative;
+.currentHashData,
+.previousHashData {
   color: black;
-  bottom: -14px;
-  width: 70%;
-  text-align: center;
-  display: block;
+  width: 100%;
   background: #c6c6c6;
-  padding: 4px 12px;
+  padding: 12px;
   font-weight: bold;
-  margin: -12px auto;
+  flex-basis: 85%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .title,
 .blockID {
   margin: 0;
+  color: black;
 }
 
 .blockID {
@@ -81,10 +109,129 @@
   text-align: right;
 }
 
+@media screen and (max-width: 640px) {
+  .blockDataLabel {
+    width: 100%;
+  }
+
+  .blockDateLabel {
+    display: none;
+  }
+}
+
+.blockDataInput {
+  padding: 2em 0;
+  background: #bddfe9;
+  color: black;
+  margin: 1em 0;
+  position: relative;
+  resize: none;
+  border: none;
+  width: 100%;
+}
+
+.blockDataInput:focus {
+  outline: none;
+}
+
+.mineButtonContainer {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1em;
+  margin: 26px 0 8px;
+  color: black;
+}
+
+.mineButton {
+  background: #49ee6c;
+  color: black;
+  padding: 1em;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.miningText {
+  font-size: 1em;
+  margin: 16px 0;
+}
+
+.miningButton {
+  height: 50px;
+  width: 100%;
+  position: inherit;
+  border: none;
+  background: #49ee6c;
+  background-color: -webkit-linear-gradient(-45deg,
+      transparent 25%,
+      #49ee6c 25%,
+      #49ee6c 50%,
+      transparent 50%,
+      transparent 75%,
+      #49ee6c 75%);
+  background: -moz-linear-gradient(-45deg,
+      transparent 25%,
+      #49ee6c 25%,
+      #49ee6c 50%,
+      transparent 50%,
+      transparent 75%,
+      #49ee6c 75%);
+  background: -o-linear-gradient(-45deg,
+      transparent 25%,
+      #49ee6c 25%,
+      #49ee6c 50%,
+      transparent 50%,
+      transparent 75%,
+      #49ee6c 75%);
+  background: linear-gradient(-45deg,
+      transparent 25%,
+      #49ee6c 25%,
+      #49ee6c 50%,
+      transparent 50%,
+      transparent 75%,
+      #49ee6c 75%);
+  color: black;
+  font-size: 1em;
+  font-weight: bold;
+  background-size: 27px 27px;
+  -webkit-animation: miningStripes 1.5s infinite linear;
+  animation: miningStripes 10.5s infinite linear;
+}
+
+@-webkit-keyframes miningStripes {
+  from {
+    background-position: 0%;
+  }
+
+  to {
+    background-position: 100%;
+  }
+}
+
+@keyframes miningStripes {
+  from {
+    background-position: 0%;
+  }
+
+  to {
+    background-position: 100%;
+  }
+}
+
 .footerContainer {
+  color: #000000;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   font-size: 1em;
   margin: 0 0 16px;
+}
+
+@media screen and (max-width: 640px) {
+  .footerContainer span:nth-last-child(1) {
+    text-align: right;
+  }
 }

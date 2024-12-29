@@ -13,6 +13,7 @@
     "@openzeppelin/contracts": "4.7.3",
     "@walletconnect/web3-provider": "1.8.0",
     "ethers": "^5.7.1",
+    "idb": "^8.0.1",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

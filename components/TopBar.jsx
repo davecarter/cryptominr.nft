@@ -28,7 +28,7 @@ export const TopBar = () => {
         )}
         {isWalletConnected && !isCorrectChain && (
           <button className={styles.cta} onClick={handleSwitchChain}>
-            Switch to GOERLY Chain
+            Switch to SEPOLIA Chain
           </button>
         )}
       </div>

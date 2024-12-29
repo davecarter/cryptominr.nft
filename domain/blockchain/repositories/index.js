@@ -1,1 +1,1 @@
-export * from "./InjectedRepository"
+export { BlockchainRepository } from "./BlockchainRepository"

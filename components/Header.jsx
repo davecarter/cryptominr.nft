@@ -2,7 +2,7 @@ import Head from "next/head"
 
 export const Header = () => (
   <Head>
-    <title>CrypoMinr</title>
+    <title>CryptoMinr</title>
     <meta
       name="description"
       content="An educational applycation to visualize and understand how the Blockchain works."
