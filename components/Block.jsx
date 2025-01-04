@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import styles from "../styles/Block.module.css"
-import { getCalculatedHashService, getMinedBlockService } from "domain/blockchain/service"
+import { getCalculatedHashService } from "domain/blockchain/service"
+import { useDomain } from "components/context"
 
 const getCurrentDateInSpanishFormat = () => {
   const now = new Date()
@@ -25,6 +26,7 @@ export const Block = ({
   isEditMode,
   onSave,
 }) => {
+  const { domain } = useDomain()
 
   const [editableTitle, setEditableTitle] = useState(title || "")
   const [editableBlockData, setEditableBlockData] = useState(blockData || "")
@@ -58,7 +60,7 @@ export const Block = ({
     }
 
     try {
-      const { validHash, nonce: validNonce } = await getMinedBlockService({
+      const { validHash, nonce: validNonce } = await domain.getMinedBlockUseCase.execute({
         blockData,
         difficulty: editableDifficulty,
       })

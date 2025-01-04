@@ -48,7 +48,6 @@ export default function Home() {
         />
         {blocks
           .slice()
-          .reverse()
           .map((block) => (
             <Block key={block.id} blockKey={block.id} {...block} />
           ))}
