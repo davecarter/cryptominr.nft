@@ -13,7 +13,6 @@ export class AddNewBlockUseCase {
   }
 
   async execute({ block }) {
-    console.log({ REPO: this._repository.addNewBlock })
     return await this._repository.addNewBlock({ block })
   }
 }
