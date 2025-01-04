@@ -17,7 +17,7 @@
 
 .headingContainer {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   font-size: 1.8em;
   padding: 16px 0 0;
@@ -26,6 +26,7 @@
 @media screen and (max-width: 640px) {
   .headingContainer {
     flex-direction: column;
+    padding: 8px 0 0;
   }
 
   .headingContainer input {
@@ -77,7 +78,7 @@
 }
 
 .blockData {
-  padding: 2em 1em;
+  padding: 1em;
   background: #bddfe9;
   color: black;
   margin: 1em 0;
@@ -91,7 +92,7 @@
   display: block;
   width: 50%;
   background: white;
-  padding: 6px;
+  padding: 6px 6px 6px 0px;
   font-size: 0.8em;
   font-weight: bold;
 }
@@ -109,8 +110,17 @@
   text-align: right;
 }
 
+.blockDataContent {
+  padding: 1em 0;
+  margin: 0em 0 0 0;
+  position: relative;
+  top: 10px;
+  min-height: 100px;
+}
+
 @media screen and (max-width: 640px) {
   .blockDataLabel {
+    padding-left: 0;
     width: 100%;
   }
 
@@ -120,10 +130,11 @@
 }
 
 .blockDataInput {
-  padding: 2em 0;
+  padding: 0;
   background: #bddfe9;
   color: black;
-  margin: 1em 0;
+  margin: 0;
+  min-height: 150px;
   position: relative;
   resize: none;
   border: none;
@@ -152,6 +163,12 @@
   font-size: 1em;
   cursor: pointer;
   font-weight: bold;
+}
+
+@media screen and (max-width: 640px) {
+  .mineButton {
+    width: 100%;
+  }
 }
 
 .miningText {
