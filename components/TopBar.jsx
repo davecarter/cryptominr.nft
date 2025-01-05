@@ -17,12 +17,13 @@ export const TopBar = () => {
     setIsModalOpen(false);
   };
 
-  const handleDocsClick = () => router.push("/docs");
+
+
+
 
 
   const handleConfirmDelete = async () => {
     setIsModalOpen(false);
-    console.log("Blocks deleted!");
     await deleteAllBlocks();
   };
 
@@ -35,7 +36,8 @@ export const TopBar = () => {
           <h3>A simple blockchain simulation tool</h3>
         </div>
         <div className={styles.buttons}>
-          <button className={styles.cta} onClick={handleDocsClick} >Documentation</button>
+          <button className={styles.cta} onClick={() => router.push("/")} >Blockchain</button>
+          <button className={styles.cta} onClick={() => router.push("/docs")} >Documentation</button>
           <button className={styles.cta} onClick={handleDeleteClick}>Delete blocks</button>
         </div>
       </nav>

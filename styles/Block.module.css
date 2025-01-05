@@ -177,8 +177,7 @@
 }
 
 .miningButton {
-  animation: miningStripes 1.5s infinite linear;
-  animation: miningStripes 10.5s infinite linear;
+  animation: mining-stripes 10.5s infinite linear;
   background: #49ee6c;
   background: linear-gradient(-45deg,
       transparent 25%,
@@ -218,7 +217,7 @@
   width: 100%;
 }
 
-@keyframes miningStripes {
+@keyframes mining-stripes {
   from {
     background-position: 0%;
   }
@@ -228,7 +227,7 @@
   }
 }
 
-@keyframes miningStripes {
+@keyframes mining-stripes {
   from {
     background-position: 0%;
   }

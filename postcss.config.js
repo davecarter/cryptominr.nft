@@ -1,7 +1,7 @@
 module.exports = {
-  plugins: [
-    require('postcss-sorting')({
-      "order": [
+  plugins: {
+    'postcss-sorting': {
+      order: [
         "custom-properties",
         "dollar-variables",
         "declarations",
@@ -10,6 +10,6 @@ module.exports = {
       ],
       "properties-order": "alphabetical",
       "unspecified-properties-position": "bottom"
-    }),
-  ],
+    },
+  },
 };
