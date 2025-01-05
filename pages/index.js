@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import Image from "next/image"
 import styles from "../styles/Home.module.css"
 import { Header } from "components/Header"
 import { Block } from "components/Block"
@@ -9,19 +8,17 @@ import { TopBar } from "components/TopBar"
 import { Footer } from "components/Footer"
 
 export default function Home() {
-  const { domain } = useDomain()
-  const [blocks, setBlocks] = useState([])
+  const { domain, blocks, updateBlocks } = useDomain()
+  const [localBlocks, setLocalBlocks] = useState(blocks)
 
   useEffect(() => {
-    domain.getBlockUseCase.execute().then((initialBlocks) => {
-      setBlocks(initialBlocks)
-    })
-  }, [])
+    setLocalBlocks(blocks)
+  }, [blocks])
 
   const addBlock = async (updatedBlock) => {
-    const previousBlock = blocks[blocks.length - 1]
+    const previousBlock = localBlocks[localBlocks.length - 1]
     const newBlock = {
-      id: blocks.length + 1,
+      id: localBlocks.length + 1,
       title: updatedBlock.title,
       blockData: updatedBlock.blockData,
       date: updatedBlock.date,
@@ -33,7 +30,8 @@ export default function Home() {
 
     await domain.addNewBlockUseCase.execute({ block: newBlock })
 
-    setBlocks((prevBlocks) => [...prevBlocks, newBlock])
+    updateBlocks()
+    setLocalBlocks((prevBlocks) => [...prevBlocks, newBlock])
   }
 
   return (
@@ -44,10 +42,10 @@ export default function Home() {
         <Block
           difficulty={CURRENT_DIFFICULTY}
           isEditMode={true}
-          previousHash={blocks.length > 0 ? blocks[blocks.length - 1].currentHash : "0"}
+          previousHash={localBlocks.length > 0 ? localBlocks[localBlocks.length - 1].currentHash : "0"}
           onSave={(updatedBlock) => addBlock(updatedBlock)}
         />
-        {blocks
+        {localBlocks
           .slice()
           .sort((a, b) => b.id - a.id)
           .map((block) => (
