@@ -34,6 +34,13 @@
   width: 100%;
 }
 
+@media screen and (width <=850px) {
+  .logo h3 {
+    display: none;
+  }
+
+}
+
 .buttons {
   display: flex;
   gap: 8px;
@@ -45,9 +52,14 @@
   border: none;
   cursor: pointer;
   font-size: large;
-  padding: 1em;
+  padding: .5em 1em;
+  white-space: nowrap;
 }
 
 .cta:hover {
+  background-color: #8a2202;
+}
+
+.active {
   background-color: #8a2202;
 }

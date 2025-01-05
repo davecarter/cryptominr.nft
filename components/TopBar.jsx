@@ -1,4 +1,4 @@
-import styles from "../styles/TopBar.module.css"
+import { active, container, logo, cta, buttons } from "../styles/TopBar.module.css"
 import React, { useState } from "react";
 import { Modal } from "./Modal";
 import { useDomain } from "./context";
@@ -8,6 +8,7 @@ export const TopBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { deleteAllBlocks } = useDomain();
   const router = useRouter()
+  const { pathname } = router;
 
   const handleDeleteClick = () => {
     setIsModalOpen(true);
@@ -17,11 +18,6 @@ export const TopBar = () => {
     setIsModalOpen(false);
   };
 
-
-
-
-
-
   const handleConfirmDelete = async () => {
     setIsModalOpen(false);
     await deleteAllBlocks();
@@ -29,16 +25,16 @@ export const TopBar = () => {
 
   return (
     <>
-      <nav className={styles.container}>
-        <div className={styles.logo}>
+      <nav className={container}>
+        <div className={logo}>
           <img src="/images/cryptominr-logo.png" alt="CryptoMinr Logo" width={50} />
           <h1>CryptoMinr.nft</h1>
           <h3>A simple blockchain simulation tool</h3>
         </div>
-        <div className={styles.buttons}>
-          <button className={styles.cta} onClick={() => router.push("/")} >Blockchain</button>
-          <button className={styles.cta} onClick={() => router.push("/docs")} >Documentation</button>
-          <button className={styles.cta} onClick={handleDeleteClick}>Delete blocks</button>
+        <div className={buttons}>
+          <button className={`${cta} ${pathname === "/" ? active : ""}`} onClick={() => router.push("/")}>Blockchain</button>
+          <button className={`${cta} ${pathname === "/docs" ? active : ""}`} onClick={() => router.push("/docs")}>Documentation</button>
+          <button className={cta} onClick={handleDeleteClick}>Delete blocks</button>
         </div>
       </nav>
       {isModalOpen && <Modal onClose={handleModalClose} onConfirm={handleConfirmDelete} />}
