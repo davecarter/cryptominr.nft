@@ -1,9 +1,11 @@
 import styles from "../styles/TopBar.module.css"
 import React, { useState } from "react";
 import { Modal } from "./Modal";
+import { useDomain } from "./context";
 
 export const TopBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { deleteAllBlocks } = useDomain();
 
   const handleDeleteClick = () => {
     setIsModalOpen(true);
@@ -13,9 +15,10 @@ export const TopBar = () => {
     setIsModalOpen(false);
   };
 
-  const handleConfirmDelete = () => {
+  const handleConfirmDelete = async () => {
     setIsModalOpen(false);
     console.log("Blocks deleted!");
+    await deleteAllBlocks();
   };
 
   return (
