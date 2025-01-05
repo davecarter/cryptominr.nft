@@ -1,0 +1,12 @@
+.container {
+  padding: 0;
+}
+
+.main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 90vh;
+  padding: 8rem 4rem;
+}

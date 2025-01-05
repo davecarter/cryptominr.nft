@@ -1,36 +1,36 @@
 .container {
-  display: flex;
   align-items: center;
-  gap: 16px;
-  background: rgba(255, 75, 2, 0.8);
   backdrop-filter: blur(10px);
+  background: rgb(255 75 2 / 80%);
+  box-shadow: 0 5px 10px 2px rgb(0 0 0 / 20%);
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  min-height: 60px;
   position: fixed;
   top: 0;
   width: 100%;
-  min-height: 60px;
   z-index: 1;
-  box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.2);
-  justify-content: space-between;
 }
 
 .logo {
-  width: 70%;
+  align-items: center;
+  display: flex;
+  filter: invert();
+  gap: 16px;
   height: 50px;
   margin: 16px;
-  filter: invert();
-  display: flex;
-  gap: 16px;
-  align-items: center;
+  width: 70%;
 }
 
 .logo h1 {
-  font-size: 1.5em;
   color: black;
+  font-size: 1.5em;
 }
 
 .logo h3 {
-  font-size: 1em;
   color: black;
+  font-size: 1em;
   width: 100%;
 }
 
@@ -41,11 +41,11 @@
 }
 
 .cta {
-  padding: 1em;
   background-color: #ff6b3e;
   border: none;
-  font-size: large;
   cursor: pointer;
+  font-size: large;
+  padding: 1em;
 }
 
 .cta:hover {

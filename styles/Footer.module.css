@@ -1,11 +1,11 @@
 .footer {
-  display: flex;
-  padding: 1rem;
   background-color: #7fda9aab;
-  gap: 16px;
   color: black;
+  display: flex;
   font-weight: bold;
+  gap: 16px;
   justify-content: flex-end;
+  padding: 1rem;
 }
 
 .footer a {
