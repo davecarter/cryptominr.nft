@@ -2,21 +2,52 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  background: #ff4b02;
+  background: rgba(255, 75, 2, 0.8);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  min-height: 60px;
+  z-index: 1;
+  box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.2);
+  justify-content: space-between;
+}
+
+.logo {
+  width: 70%;
+  height: 50px;
+  margin: 16px;
+  filter: invert();
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.logo h1 {
+  font-size: 1.5em;
+  color: black;
+}
+
+.logo h3 {
+  font-size: 1em;
+  color: black;
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  margin: 16px;
 }
 
 .cta {
   padding: 1em;
-  background-color: #0070f3;
+  background-color: #ff6b3e;
   border: none;
   font-size: large;
   cursor: pointer;
 }
 
 .cta:hover {
-  background-color: #0090ff;
-}
-
-.wallet {
-  font-weight: bold;
+  background-color: #8a2202;
 }

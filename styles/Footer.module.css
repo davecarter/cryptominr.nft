@@ -1,0 +1,14 @@
+.footer {
+  display: flex;
+  padding: 1rem;
+  background-color: #7fda9aab;
+  gap: 16px;
+  color: black;
+  font-weight: bold;
+  justify-content: flex-end;
+}
+
+.footer a {
+  display: flex;
+  flex: 0 0 auto;
+}
