@@ -13,6 +13,7 @@
     "@openzeppelin/contracts": "4.7.3",
     "@walletconnect/web3-provider": "1.8.0",
     "ethers": "^5.7.1",
+    "hash": "^0.2.1",
     "idb": "^8.0.1",
     "next": "12.3.1",
     "react": "18.2.0",
@@ -20,7 +21,15 @@
     "web3modal": "1.9.9"
   },
   "devDependencies": {
-    "eslint": "8.25.0",
-    "eslint-config-next": "12.3.1"
+    "@typescript-eslint/eslint-plugin": "^8.19.0",
+    "@typescript-eslint/parser": "^8.19.0",
+    "eslint": "^9.17.0",
+    "eslint-config-next": "12.3.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-define-config": "^2.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.3",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "prettier": "3.4.2"
   }
 }

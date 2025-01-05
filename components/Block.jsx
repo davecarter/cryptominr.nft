@@ -1,32 +1,7 @@
 import { useState, useEffect } from "react"
 import styles from "../styles/Block.module.css"
-
-const calculateHash = async (data) => {
-  const encoder = new TextEncoder()
-  const encodedData = encoder.encode(data)
-  const hashBuffer = await crypto.subtle.digest("SHA-256", encodedData)
-  const hashArray = Array.from(new Uint8Array(hashBuffer))
-  const hashHex = hashArray.map((byte) => byte.toString(16).padStart(2, "0")).join("")
-  return hashHex
-}
-
-const findValidHash = async (blockData, difficulty) => {
-  let nonce = 0
-  let validHash = ""
-  const target = "0".repeat(difficulty)
-
-  while (true) {
-    const dataToHash = `${blockData.title}${blockData.blockData}${blockData.date}${blockData.previousHash}${nonce}${blockData.difficulty}`
-    const hash = await calculateHash(dataToHash)
-    if (hash.startsWith(target)) {
-      validHash = hash
-      break
-    }
-    nonce++
-  }
-
-  return { validHash, nonce }
-}
+import { getCalculatedHashService } from "domain/blockchain/service"
+import { useDomain } from "components/context"
 
 const getCurrentDateInSpanishFormat = () => {
   const now = new Date()
@@ -51,18 +26,20 @@ export const Block = ({
   isEditMode,
   onSave,
 }) => {
+  const { domain } = useDomain()
+
   const [editableTitle, setEditableTitle] = useState(title || "")
   const [editableBlockData, setEditableBlockData] = useState(blockData || "")
-  const [editableDate, setEditableDate] = useState(date || getCurrentDateInSpanishFormat())
+  const [editableDate,] = useState(date || getCurrentDateInSpanishFormat())
   const [editableCurrentHash, setEditableCurrentHash] = useState(currentHash || "")
-  const [editableNonce, setEditableNonce] = useState(nonce || 0)
-  const [editableDifficulty, setEditableDifficulty] = useState(difficulty || 1)
-  const [mining, setmining] = useState(false) // Nuevo estado de carga
+  const [editableNonce,] = useState(nonce || 0)
+  const [editableDifficulty,] = useState(difficulty || 1)
+  const [mining, setmining] = useState(false)
 
   useEffect(() => {
     const updateHash = async () => {
       const dataToHash = `${editableTitle}${editableBlockData}${editableDate}${previousHash}${editableNonce}${editableDifficulty}`
-      const newHash = await calculateHash(dataToHash)
+      const newHash = await getCalculatedHashService({ data: dataToHash })
       setEditableCurrentHash(newHash)
     }
 
@@ -71,19 +48,22 @@ export const Block = ({
     }
   }, [editableTitle, editableBlockData, editableDate, previousHash, editableNonce, editableDifficulty, isEditMode])
 
-  const handleSave = async () => {
-    if (onSave) {
-      setmining(true) // Activamos el estado de carga al empezar a calcular el hash
+  const handleCalculateHash = async () => {
+    if (!onSave) return
 
-      const blockData = {
-        title: editableTitle,
-        blockData: editableBlockData,
-        date: editableDate,
-        previousHash: editableCurrentHash,
+    const blockData = {
+      title: editableTitle,
+      blockData: editableBlockData,
+      date: editableDate,
+      previousHash: editableCurrentHash,
+      difficulty: editableDifficulty,
+    }
+
+    try {
+      const { validHash, nonce: validNonce } = await domain.getMinedBlockUseCase.execute({
+        blockData,
         difficulty: editableDifficulty,
-      }
-
-      const { validHash, nonce: validNonce } = await findValidHash(blockData, editableDifficulty)
+      })
 
       onSave({
         id,
@@ -95,10 +75,27 @@ export const Block = ({
         nonce: validNonce,
         difficulty: editableDifficulty,
       })
-
-      setmining(false) // Desactivamos el estado de carga cuando se haya terminado
+    } catch (error) {
+      console.error("Error while calculating hash:", error)
+      throw error
     }
   }
+
+
+  const handleMining = async () => {
+    setmining(true)
+
+    try {
+      await handleCalculateHash()
+    } catch (error) {
+      console.error("Error during mining:", error)
+    } finally {
+      setEditableTitle('')
+      setEditableBlockData('Enter new block data')
+      setmining(false)
+    }
+  }
+
 
   return (
     <div className={styles.container} key={key}>
@@ -138,7 +135,7 @@ export const Block = ({
               <span className={styles.blockDataLabel}>Block data:</span>
               <span className={styles.blockDateLabel}>{date}</span>
             </span>
-            <p>{blockData}</p>
+            <p className={styles.blockDataContent}>{blockData}</p>
           </>
         )}
       </div>
@@ -155,7 +152,7 @@ export const Block = ({
       {isEditMode ? (
         <div className={styles.mineButtonContainer}>
           {mining && <span className={styles.miningText}>Mining... please wait</span>}
-          <button className={mining ? styles.miningButton : styles.mineButton} onClick={handleSave} disabled={mining}>
+          <button className={mining ? styles.miningButton : styles.mineButton} onClick={handleMining} disabled={mining}>
             {!mining && "Mine Block!"}
           </button>
         </div>

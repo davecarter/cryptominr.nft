@@ -48,7 +48,7 @@ export default function Home() {
         />
         {blocks
           .slice()
-          .reverse()
+          .sort((a, b) => b.id - a.id)
           .map((block) => (
             <Block key={block.id} blockKey={block.id} {...block} />
           ))}

@@ -1,18 +1,18 @@
 import { BlockchainRepository } from "../repositories"
 
-export class AddNewBlockUseCase {
+export class GetMinedBlockUseCase {
   _repository
 
   static async create() {
     const repository = await BlockchainRepository.create()
-    return new AddNewBlockUseCase({ repository })
+    return new GetMinedBlockUseCase({ repository })
   }
 
   constructor({ repository }) {
     this._repository = repository
   }
 
-  async execute({ block }) {
-    return await this._repository.addNewBlock({ block })
+  async execute({ blockData, difficulty }) {
+    return await this._repository.getMinedBlock({ blockData, difficulty })
   }
 }

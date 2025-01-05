@@ -1,6 +1,7 @@
 import { openDB } from "idb"
 import { DB_NAME, STORE_NAME } from "domain/config"
 import { v4 as uuidv4 } from "uuid"
+import { getCalculatedHashService } from "../service"
 
 export class BlockchainRepository {
   static async create() {
@@ -30,5 +31,24 @@ export class BlockchainRepository {
 
     const db = await this.indexedDB()
     await db.put(STORE_NAME, block)
+  }
+
+
+  async getMinedBlock({ blockData, difficulty }) {
+    let nonce = 0
+    let validHash = ""
+    const target = "0".repeat(difficulty)
+
+    while (true) {
+      const dataToHash = `${blockData.title}${blockData.blockData}${blockData.date}${blockData.previousHash}${nonce}${blockData.difficulty}`
+      const hash = await getCalculatedHashService({ data: dataToHash })
+      if (hash.startsWith(target)) {
+        validHash = hash
+        break
+      }
+      nonce++
+    }
+
+    return { validHash, nonce }
   }
 }
