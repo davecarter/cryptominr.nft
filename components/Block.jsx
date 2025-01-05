@@ -4,10 +4,8 @@ import { getCalculatedHashService } from "domain/blockchain/service"
 import { useDomain } from "components/context"
 import { getCurrentDateInSpanishFormat, formatNumeral } from "utils"
 
-
 export const Block = ({
   id,
-  key,
   title,
   blockData,
   date,
@@ -47,7 +45,7 @@ export const Block = ({
       title: editableTitle,
       blockData: editableBlockData,
       date: editableDate,
-      previousHash: editableCurrentHash,
+      previousHash: previousHash,
       difficulty: editableDifficulty,
     }
 
@@ -62,7 +60,7 @@ export const Block = ({
         title: editableTitle,
         blockData: editableBlockData,
         date: editableDate,
-        previousHash: editableCurrentHash,
+        previousHash,
         currentHash: validHash,
         nonce: formatNumeral(validNonce),
         difficulty: editableDifficulty,
@@ -88,7 +86,7 @@ export const Block = ({
   }
 
   return (
-    <div className={styles.container} key={key}>
+    <div className={styles.container}>
       <span className={styles.currentHashContainer}>
         <span className={styles.currentHash}>Current Hash:</span>
         <span className={styles.currentHashData}> {editableCurrentHash}</span>
