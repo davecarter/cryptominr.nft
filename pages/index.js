@@ -5,6 +5,8 @@ import { Header } from "components/Header"
 import { Block } from "components/Block"
 import { useDomain } from "components/context"
 import { CURRENT_DIFFICULTY } from "domain/config"
+import { TopBar } from "components/TopBar"
+import { Footer } from "components/Footer"
 
 export default function Home() {
   const { domain } = useDomain()
@@ -38,8 +40,7 @@ export default function Home() {
     <div className={styles.container}>
       <Header />
       <main className={styles.main}>
-        <h1 className={styles.title}>CryptoMinr</h1>
-        <h2 className={styles.subtitle}>A simple blockchain simulation</h2>
+        <TopBar />
         <Block
           difficulty={CURRENT_DIFFICULTY}
           isEditMode={true}
@@ -53,18 +54,7 @@ export default function Home() {
             <Block key={block.id} blockKey={block.id} {...block} />
           ))}
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/images/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      <Footer />
     </div>
   )
 }
