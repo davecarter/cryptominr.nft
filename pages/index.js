@@ -11,18 +11,13 @@ export default function Home() {
   const { domain, blocks, updateBlocks } = useDomain()
   const [localBlocks, setLocalBlocks] = useState(blocks)
 
-  useEffect(() => {
-    setLocalBlocks(blocks)
-  }, [blocks])
-
   const addBlock = async (updatedBlock) => {
-    const previousBlock = localBlocks[localBlocks.length - 1]
     const newBlock = {
       id: localBlocks.length + 1,
       title: updatedBlock.title,
       blockData: updatedBlock.blockData,
       date: updatedBlock.date,
-      previousHash: previousBlock ? previousBlock.currentHash : "0",
+      previousHash: localBlocks[localBlocks.length - 1] ? localBlocks[localBlocks.length - 1].currentHash : "0",
       currentHash: updatedBlock.currentHash,
       nonce: updatedBlock.nonce,
       difficulty: updatedBlock.difficulty,
@@ -30,8 +25,8 @@ export default function Home() {
 
     await domain.addNewBlockUseCase.execute({ block: newBlock })
 
-    updateBlocks()
     setLocalBlocks((prevBlocks) => [...prevBlocks, newBlock])
+    await updateBlocks()
   }
 
   return (
@@ -49,7 +44,9 @@ export default function Home() {
           .slice()
           .sort((a, b) => b.id - a.id)
           .map((block) => (
-            <Block key={block.id} blockKey={block.id} {...block} />
+            <div className={styles.item} key={block.id}>
+              <Block blockKey={block.id} {...block} />
+            </div>
           ))}
       </main>
       <Footer />
