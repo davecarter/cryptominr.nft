@@ -1,45 +1,37 @@
-import { useWeb3 } from "components/context"
-import { useState, useEffect } from "react"
-import { addressNick, ensNameResolver, getExplorerLink } from "../domain/utils"
-
 import styles from "../styles/TopBar.module.css"
+import React, { useState } from "react";
+import { Modal } from "./Modal";
 
 export const TopBar = () => {
-  const { account, isActive, isCorrectChain, connectWallet, isWalletConnected, disconnectWallet, handleSwitchChain } =
-    useWeb3()
-  const [ensName, setEnsName] = useState(null)
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    ensNameResolver(account).then(setEnsName)
-  }, [account])
+  const handleDeleteClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleConfirmDelete = () => {
+    setIsModalOpen(false);
+    console.log("Blocks deleted!");
+  };
 
   return (
-    <nav className={styles.container}>
-      <div>
-        {!isActive && !isWalletConnected && (
-          <button className={styles.cta} onClick={connectWallet}>
-            Connect Metamask
-          </button>
-        )}
-        {isActive && isWalletConnected && (
-          <button className={styles.cta} onClick={disconnectWallet}>
-            Disconnect Metamask
-          </button>
-        )}
-        {isWalletConnected && !isCorrectChain && (
-          <button className={styles.cta} onClick={handleSwitchChain}>
-            Switch to SEPOLIA Chain
-          </button>
-        )}
-      </div>
-      <div>
-        {isActive && isWalletConnected && (
-          <span>
-            <span>user wallet: </span>
-            <span className={styles.wallet}>{ensName || addressNick(account)}</span>
-          </span>
-        )}
-      </div>
-    </nav>
+    <>
+      <nav className={styles.container}>
+        <div className={styles.logo}>
+          <img src="/images/cryptominr-logo.png" alt="CryptoMinr Logo" width={50} />
+          <h1>CryptoMinr.nft</h1>
+          <h3>A simple blockchain simulation tool</h3>
+        </div>
+        <div className={styles.buttons}>
+          <button className={styles.cta}>Documentation</button>
+          <button className={styles.cta} onClick={handleDeleteClick}>Delete blocks</button>
+        </div>
+      </nav>
+      {isModalOpen && <Modal onClose={handleModalClose} onConfirm={handleConfirmDelete} />}
+    </>
   )
 }
