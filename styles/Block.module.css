@@ -1,7 +1,7 @@
 .container {
   background-color: #fff;
   box-shadow: 5px 7px 20px 0 black;
-  margin: 54px auto 64px;
+  margin: 54px auto 0;
   padding: 1em;
   position: relative;
   width: 80%;
