@@ -46,14 +46,14 @@ By using IPFS, Cryptominr showcases modern decentralized technologies and highli
 ## Screenshots
 
 ### Entering Block Data
-![Entering block data](/images/initial-block-data.png)
+![Entering block data](/public/images/initial-block-data.png)
 - Add a **title** and some **text content**, which can represent a list of transactions.
 - Observe the `Current Hash` value while adding data: it updates dynamically with every keystroke, demonstrating how even small changes in the data completely alter the hash.
 
 ---
 
 ### Mining a Block
-![Mining Process](/images/mining-block-data.png)
+![Mining Process](/public/images/mining-block-data.png)
 - Press the **"Mine Block"** button to start the mining process.
 - The algorithm will increment the `Nonce` value until it finds a randomly generated hash that satisfies the required number of leading zeros based on the specified difficulty level.
 - This simulates the proof-of-work mechanism used in real-world blockchain systems.
@@ -61,7 +61,7 @@ By using IPFS, Cryptominr showcases modern decentralized technologies and highli
 ---
 
 ### Blockchain Overview
-![The Initial Blockchain](/images/mined-block-hash.png)
+![The Initial Blockchain](/public/images/mined-block-hash.png)
 - Once mined, the block will display its `Current Hash` value, which includes the required leading zeros.
 - The `Current Hash` of the mined block becomes the `Previous Hash` for the next block, forming a **chain of blocks**.
 - This structure, protected by cryptographic proof of work, ensures the integrity of the blockchain and defends against tampering.
