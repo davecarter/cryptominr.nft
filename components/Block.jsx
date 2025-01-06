@@ -2,20 +2,10 @@ import { useState, useEffect } from "react"
 import styles from "../styles/Block.module.css"
 import { getCalculatedHashService } from "domain/blockchain/service"
 import { useDomain } from "components/context"
-
-const getCurrentDateInSpanishFormat = () => {
-  const now = new Date()
-  const year = now.getFullYear()
-  const month = String(now.getMonth() + 1).padStart(2, "0")
-  const day = String(now.getDate()).padStart(2, "0")
-  const hours = String(now.getHours()).padStart(2, "0")
-  const minutes = String(now.getMinutes()).padStart(2, "0")
-  return `Time: ${hours}:${minutes} - Date: ${day}-${month}-${year}`
-}
+import { getCurrentDateInSpanishFormat, formatNumeral } from "utils"
 
 export const Block = ({
   id,
-  key,
   title,
   blockData,
   date,
@@ -30,10 +20,10 @@ export const Block = ({
 
   const [editableTitle, setEditableTitle] = useState(title || "")
   const [editableBlockData, setEditableBlockData] = useState(blockData || "")
-  const [editableDate,] = useState(date || getCurrentDateInSpanishFormat())
+  const [editableDate] = useState(date || getCurrentDateInSpanishFormat())
   const [editableCurrentHash, setEditableCurrentHash] = useState(currentHash || "")
-  const [editableNonce,] = useState(nonce || 0)
-  const [editableDifficulty,] = useState(difficulty || 1)
+  const [editableNonce] = useState(nonce || 0)
+  const [editableDifficulty] = useState(difficulty || 1)
   const [mining, setmining] = useState(false)
 
   useEffect(() => {
@@ -55,7 +45,7 @@ export const Block = ({
       title: editableTitle,
       blockData: editableBlockData,
       date: editableDate,
-      previousHash: editableCurrentHash,
+      previousHash: previousHash,
       difficulty: editableDifficulty,
     }
 
@@ -70,9 +60,9 @@ export const Block = ({
         title: editableTitle,
         blockData: editableBlockData,
         date: editableDate,
-        previousHash: editableCurrentHash,
+        previousHash,
         currentHash: validHash,
-        nonce: validNonce,
+        nonce: formatNumeral(validNonce),
         difficulty: editableDifficulty,
       })
     } catch (error) {
@@ -80,7 +70,6 @@ export const Block = ({
       throw error
     }
   }
-
 
   const handleMining = async () => {
     setmining(true)
@@ -90,15 +79,14 @@ export const Block = ({
     } catch (error) {
       console.error("Error during mining:", error)
     } finally {
-      setEditableTitle('')
-      setEditableBlockData('Enter new block data')
+      setEditableTitle("")
+      setEditableBlockData("Enter new block data")
       setmining(false)
     }
   }
 
-
   return (
-    <div className={styles.container} key={key}>
+    <div className={styles.container}>
       <span className={styles.currentHashContainer}>
         <span className={styles.currentHash}>Current Hash:</span>
         <span className={styles.currentHashData}> {editableCurrentHash}</span>

@@ -1,22 +1,65 @@
 .container {
-  display: flex;
   align-items: center;
+  backdrop-filter: blur(10px);
+  background: rgb(255 75 2 / 80%);
+  box-shadow: 0 5px 10px 2px rgb(0 0 0 / 20%);
+  display: flex;
   gap: 16px;
-  background: #ff4b02;
+  justify-content: space-between;
+  min-height: 60px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.logo {
+  align-items: center;
+  display: flex;
+  filter: invert();
+  gap: 16px;
+  height: 50px;
+  margin: 16px;
+  width: 70%;
+}
+
+.logo h1 {
+  color: black;
+  font-size: 1.5em;
+}
+
+.logo h3 {
+  color: black;
+  font-size: 1em;
+  width: 100%;
+}
+
+@media screen and (width <=850px) {
+  .logo h3 {
+    display: none;
+  }
+
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  margin: 16px;
 }
 
 .cta {
-  padding: 1em;
-  background-color: #0070f3;
+  background-color: #ff6b3e;
   border: none;
-  font-size: large;
   cursor: pointer;
+  font-size: large;
+  padding: .5em 1em;
+  white-space: nowrap;
 }
 
 .cta:hover {
-  background-color: #0090ff;
+  background-color: #8a2202;
 }
 
-.wallet {
-  font-weight: bold;
+.active {
+  background-color: #8a2202;
 }

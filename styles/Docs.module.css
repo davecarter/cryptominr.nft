@@ -1,0 +1,37 @@
+.container {
+  background-color: white;
+  color: black;
+  padding: 0;
+}
+
+.main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 90vh;
+  min-width: 80vw;
+  padding: 8rem 4rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2em;
+  gap: 0;
+  justify-content: center;
+  line-height: 1.5em;
+  width: 50%;
+}
+
+@media screen and (width <=900px) {
+  .content {
+    width: 100%;
+  }
+}
+
+.title {
+  font-size: 2em;
+  line-height: 1.2em;
+  margin-bottom: 1em;
+}

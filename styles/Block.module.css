@@ -1,29 +1,29 @@
 .container {
-  background-color: #ffffff;
-  box-shadow: 5px 7px 20px 0px black;
-  margin: 54px auto 64px;
+  background-color: #fff;
+  box-shadow: 5px 7px 20px 0 black;
+  margin: 54px auto 0;
   padding: 1em;
   position: relative;
   width: 80%;
 }
 
 .headingContainer input {
-  color: #000000;
-  border: none;
   background: transparent;
+  border: none;
+  color: #000;
   font-size: 1.2em;
   width: 80%;
 }
 
 .headingContainer {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
+  display: flex;
   font-size: 1.8em;
+  justify-content: space-between;
   padding: 16px 0 0;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (width <=640px) {
   .headingContainer {
     flex-direction: column;
     padding: 8px 0 0;
@@ -37,88 +37,88 @@
 
 .previousHashContainer,
 .currentHashContainer {
-  display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  display: flex;
   font-size: 1em;
+  justify-content: space-between;
 }
 
 .currentHash,
 .previousHash {
-  color: black;
-  width: 100%;
   background: #7fda9b;
-  padding: 12px;
-  font-weight: bold;
+  color: black;
   flex-basis: 15%;
+  font-weight: bold;
   min-width: 140px;
+  padding: 12px;
+  width: 100%;
 }
 
 .currentHashData,
 .previousHashData {
-  color: black;
-  width: 100%;
   background: #c6c6c6;
-  padding: 12px;
-  font-weight: bold;
+  color: black;
   flex-basis: 85%;
+  font-weight: bold;
   overflow: hidden;
+  padding: 12px;
   text-overflow: ellipsis;
+  width: 100%;
 }
 
 .title,
 .blockID {
-  margin: 0;
   color: black;
+  margin: 0;
 }
 
 .blockID {
-  margin-top: 8px;
   font-size: 0.6em;
+  margin-top: 8px;
 }
 
 .blockData {
-  padding: 1em;
   background: #bddfe9;
   color: black;
   margin: 1em 0;
+  padding: 1em;
   position: relative;
 }
 
 .blockDataLabel {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 50%;
   background: white;
-  padding: 6px 6px 6px 0px;
+  display: block;
   font-size: 0.8em;
   font-weight: bold;
+  left: 0;
+  padding: 6px 6px 6px 0;
+  position: absolute;
+  top: 0;
+  width: 50%;
 }
 
 .blockDateLabel {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: block;
-  width: 50%;
   background: white;
-  padding: 6px;
+  display: block;
   font-size: 0.8em;
   font-weight: bold;
+  padding: 6px;
+  position: absolute;
+  right: 0;
   text-align: right;
+  top: 0;
+  width: 50%;
 }
 
 .blockDataContent {
+  margin: 0;
+  min-height: 100px;
   padding: 1em 0;
-  margin: 0em 0 0 0;
   position: relative;
   top: 10px;
-  min-height: 100px;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (width <=640px) {
   .blockDataLabel {
     padding-left: 0;
     width: 100%;
@@ -130,14 +130,14 @@
 }
 
 .blockDataInput {
-  padding: 0;
   background: #bddfe9;
+  border: none;
   color: black;
   margin: 0;
   min-height: 150px;
+  padding: 0;
   position: relative;
   resize: none;
-  border: none;
   width: 100%;
 }
 
@@ -146,26 +146,26 @@
 }
 
 .mineButtonContainer {
-  display: flex;
   align-items: flex-start;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 1em;
-  margin: 26px 0 8px;
   color: black;
+  display: flex;
+  flex-direction: column;
+  font-size: 1em;
+  justify-content: center;
+  margin: 26px 0 8px;
 }
 
 .mineButton {
   background: #49ee6c;
-  color: black;
-  padding: 1em;
   border: none;
-  font-size: 1em;
+  color: black;
   cursor: pointer;
+  font-size: 1em;
   font-weight: bold;
+  padding: 1em;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (width <=640px) {
   .mineButton {
     width: 100%;
   }
@@ -177,26 +177,9 @@
 }
 
 .miningButton {
-  height: 50px;
-  width: 100%;
-  position: inherit;
-  border: none;
+  animation: mining-stripes 10.5s infinite linear;
   background: #49ee6c;
-  background-color: -webkit-linear-gradient(-45deg,
-      transparent 25%,
-      #49ee6c 25%,
-      #49ee6c 50%,
-      transparent 50%,
-      transparent 75%,
-      #49ee6c 75%);
-  background: -moz-linear-gradient(-45deg,
-      transparent 25%,
-      #49ee6c 25%,
-      #49ee6c 50%,
-      transparent 50%,
-      transparent 75%,
-      #49ee6c 75%);
-  background: -o-linear-gradient(-45deg,
+  background: linear-gradient(-45deg,
       transparent 25%,
       #49ee6c 25%,
       #49ee6c 50%,
@@ -210,15 +193,31 @@
       transparent 50%,
       transparent 75%,
       #49ee6c 75%);
+  background: linear-gradient(-45deg,
+      transparent 25%,
+      #49ee6c 25%,
+      #49ee6c 50%,
+      transparent 50%,
+      transparent 75%,
+      #49ee6c 75%);
+  background-color: linear-gradient(-45deg,
+      transparent 25%,
+      #49ee6c 25%,
+      #49ee6c 50%,
+      transparent 50%,
+      transparent 75%,
+      #49ee6c 75%);
+  background-size: 27px 27px;
+  border: none;
   color: black;
   font-size: 1em;
   font-weight: bold;
-  background-size: 27px 27px;
-  -webkit-animation: miningStripes 1.5s infinite linear;
-  animation: miningStripes 10.5s infinite linear;
+  height: 50px;
+  position: inherit;
+  width: 100%;
 }
 
-@-webkit-keyframes miningStripes {
+@keyframes mining-stripes {
   from {
     background-position: 0%;
   }
@@ -228,7 +227,7 @@
   }
 }
 
-@keyframes miningStripes {
+@keyframes mining-stripes {
   from {
     background-position: 0%;
   }
@@ -239,15 +238,15 @@
 }
 
 .footerContainer {
-  color: #000000;
-  display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  color: #000;
+  display: flex;
   font-size: 1em;
+  justify-content: space-between;
   margin: 0 0 16px;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (width <=640px) {
   .footerContainer span:nth-last-child(1) {
     text-align: right;
   }

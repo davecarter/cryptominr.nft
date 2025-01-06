@@ -33,6 +33,10 @@ export class BlockchainRepository {
     await db.put(STORE_NAME, block)
   }
 
+  async deleteAllBlocks() {
+    const db = await this.indexedDB()
+    await db.clear(STORE_NAME)
+  }
 
   async getMinedBlock({ blockData, difficulty }) {
     let nonce = 0
