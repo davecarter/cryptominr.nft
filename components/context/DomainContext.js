@@ -1,24 +1,22 @@
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useContext, useState } from "react"
 import { DomainApp } from "../../domain/index"
+import { useRouter } from "next/router"
 const DomainContext = createContext()
 
 function DomainProvider(props) {
   const domainApp = DomainApp.create()
   const [blocks, setBlocks] = useState([]);
+  const router = useRouter()
 
   const updateBlocks = async () => {
-    const initialBlocks = await domainApp.getBlockUseCase.execute()
+    const initialBlocks = await domainApp.getBlocksUseCase.execute()
     setBlocks(initialBlocks);
   }
 
   const deleteAllBlocks = async () => {
-    await domainApp.deleteAllBlocksUseCase.execute();
-    setBlocks([]);
+    const blocks = await domainApp.deleteAllBlocksUseCase.execute();
+    router.reload();
   };
-
-  useEffect(() => {
-    updateBlocks()
-  }, [])
 
   return (
     <DomainContext.Provider
