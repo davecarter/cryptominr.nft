@@ -39,7 +39,10 @@ By using IPFS, Cryptominr showcases modern decentralized technologies and highli
 
 ## Explore Cryptominr
 
-🔗 **[Launch Cryptominr Now](#)** (Replace this link with your actual application URL.)
+🔗 **[Launch Cryptominr Now](https://cryptominr.vercel.app/)**
+
+🔗 **[Access Cryptominr documentation](https://cryptominr.vercel.app/docs)**
+
 
 ---
 
