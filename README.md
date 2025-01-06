@@ -25,7 +25,7 @@ This hands-on approach demystifies blockchain concepts, making it ideal for lear
 
 ## Where to Find Cryptominr
 
-Cryptominr is hosted on **[Vercel](https://vercel.com/)** and accessible via a redirection from a static `index.html` file stored on the **InterPlanetary File System (IPFS)**.
+Cryptominr is hosted on **[cryptominr.vercel.app](https://cryptominr.vercel.app/)** and accessible via a redirection from a static `index.html` file stored on the **InterPlanetary File System (IPFS)** accessing via the `.nft` domain at: **[https://cryptominr.nft](https://cryptominr.nft/)**.
 
 ### What is IPFS?
 
