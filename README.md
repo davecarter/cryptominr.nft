@@ -67,6 +67,7 @@ By using IPFS, Cryptominr showcases modern decentralized technologies and highli
 ![The Initial Blockchain](/public/images/mined-block-hash.png)
 - Once mined, the block will display its `Current Hash` value, which includes the required leading zeros.
 - The `Current Hash` of the mined block becomes the `Previous Hash` for the next block, forming a **chain of blocks**.
+- The `nonce` represents the number of iterations required to find a valid hash. Higher difficulty levels increase the number of required iterations, resulting in longer mining times.
 - This structure, protected by cryptographic proof of work, ensures the integrity of the blockchain and defends against tampering.
 
 
