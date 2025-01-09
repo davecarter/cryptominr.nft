@@ -37,7 +37,7 @@
 
 .previousHashContainer,
 .currentHashContainer {
-  align-items: flex-start;
+  align-items: stretch;
   display: flex;
   font-size: 1em;
   justify-content: space-between;
@@ -56,6 +56,7 @@
 
 .currentHashData,
 .previousHashData {
+  align-content: center;
   background: #c6c6c6;
   color: black;
   flex-basis: 85%;
@@ -179,34 +180,42 @@
 .miningButton {
   animation: mining-stripes 10.5s infinite linear;
   background: #49ee6c;
-  background: linear-gradient(-45deg,
-      transparent 25%,
-      #49ee6c 25%,
-      #49ee6c 50%,
-      transparent 50%,
-      transparent 75%,
-      #49ee6c 75%);
-  background: linear-gradient(-45deg,
-      transparent 25%,
-      #49ee6c 25%,
-      #49ee6c 50%,
-      transparent 50%,
-      transparent 75%,
-      #49ee6c 75%);
-  background: linear-gradient(-45deg,
-      transparent 25%,
-      #49ee6c 25%,
-      #49ee6c 50%,
-      transparent 50%,
-      transparent 75%,
-      #49ee6c 75%);
-  background-color: linear-gradient(-45deg,
-      transparent 25%,
-      #49ee6c 25%,
-      #49ee6c 50%,
-      transparent 50%,
-      transparent 75%,
-      #49ee6c 75%);
+  background: linear-gradient(
+    -45deg,
+    transparent 25%,
+    #49ee6c 25%,
+    #49ee6c 50%,
+    transparent 50%,
+    transparent 75%,
+    #49ee6c 75%
+  );
+  background: linear-gradient(
+    -45deg,
+    transparent 25%,
+    #49ee6c 25%,
+    #49ee6c 50%,
+    transparent 50%,
+    transparent 75%,
+    #49ee6c 75%
+  );
+  background: linear-gradient(
+    -45deg,
+    transparent 25%,
+    #49ee6c 25%,
+    #49ee6c 50%,
+    transparent 50%,
+    transparent 75%,
+    #49ee6c 75%
+  );
+  background-color: linear-gradient(
+    -45deg,
+    transparent 25%,
+    #49ee6c 25%,
+    #49ee6c 50%,
+    transparent 50%,
+    transparent 75%,
+    #49ee6c 75%
+  );
   background-size: 27px 27px;
   border: none;
   color: black;
