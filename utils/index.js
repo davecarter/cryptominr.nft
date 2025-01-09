@@ -1,3 +1,3 @@
 export { formatNumeral } from "./formatNumeral"
 export { getCurrentDateInSpanishFormat } from "./getCurrentDateInSpanishFormat"
-export { debugLogger } from "./debugLogger"
+export { debugLogger, debugConfig } from "./debugLogger"

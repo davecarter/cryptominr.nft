@@ -7,9 +7,7 @@ const DebugConfig = {
 }
 
 export const debugLogger = (...args) => {
-  if (!DebugConfig.isEnabled()) {
-    return
-  }
+  if (!DebugConfig.isEnabled()) return
 
   const timestamp = new Date().toISOString()
   console.log(`[${timestamp}]`, ...args)
