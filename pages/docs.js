@@ -2,9 +2,11 @@ import { Header } from "components/Header"
 import styles from "../styles/Docs.module.css"
 import { Footer } from "components/Footer"
 import { TopBar } from "components/TopBar"
-import Image from "next/image"
+import { useRouter } from "next/router"
 
 export default function Docs() {
+  const router = useRouter()
+
   return (
     <div className={styles.container}>
       <Header />
@@ -90,7 +92,9 @@ export default function Docs() {
               Start exploring, creating blocks, and understanding the revolutionary technology that's changing the
               digital landscape.
             </p>
-            <button className={styles.startButton}>Begin Blockchain Journey</button>
+            <button onClick={() => router.push("/")} className={styles.startButton}>
+              Begin Blockchain Journey
+            </button>
           </section>
         </div>
       </main>
