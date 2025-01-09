@@ -25,7 +25,7 @@ function DomainProvider({ children }) {
     return domainAppRef.current
   }, [])
 
-  const fetchBlocks = useCallback(async () => {
+  const updateBlocks = useCallback(async () => {
     debugLogger("Starting block fetch process")
 
     try {
@@ -64,7 +64,7 @@ function DomainProvider({ children }) {
     const loadBlocks = async () => {
       if (isMounted) {
         debugLogger("Attempting to load blocks")
-        await fetchBlocks()
+        await updateBlocks()
       }
     }
 
@@ -72,17 +72,24 @@ function DomainProvider({ children }) {
     return () => {
       isMounted = false
     }
-  }, [fetchBlocks])
+  }, [updateBlocks])
+
+  const deleteAllBlocks = async () => {
+    const domainApp = initDomainApp()
+    const blocks = await domainApp.deleteAllBlocksUseCase.execute()
+    router.reload()
+  }
 
   const contextValue = useMemo(
     () => ({
       domain: initDomainApp(),
-      updateBlocks: fetchBlocks,
+      updateBlocks,
       blocks,
       isLoading,
+      deleteAllBlocks,
       error,
     }),
-    [initDomainApp, fetchBlocks, blocks, isLoading, error],
+    [initDomainApp, updateBlocks, blocks, isLoading, error],
   )
 
   return <DomainContext.Provider value={contextValue}>{children}</DomainContext.Provider>
