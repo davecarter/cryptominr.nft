@@ -1,6 +1,8 @@
 import { createContext, useContext, useState, useEffect, useMemo } from "react"
 import { DomainApp } from "../../domain/index"
 import { useRouter } from "next/router"
+import { debugLogger } from "../../utils"
+
 const DomainContext = createContext()
 
 function DomainProvider(props) {
@@ -36,9 +38,13 @@ function DomainProvider(props) {
 
 function useDomain() {
   const context = useContext(DomainContext)
+
   if (context === undefined) {
+    debugLogger("useDomain called outside of provider")
     throw new Error(`useDomain must be used within a DomainProvider`)
   }
+
+  debugLogger("Domain Context Used", context)
   return context
 }
 
