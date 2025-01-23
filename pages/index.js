@@ -8,8 +8,15 @@ import { TopBar } from "components/TopBar"
 import { Footer } from "components/Footer"
 
 export default function Home() {
-  const { domain, blocks, updateBlocks } = useDomain()
+  const { domain, blocks, setBlocks, updateBlocks } = useDomain()
   const [localBlocks, setLocalBlocks] = useState(blocks)
+
+  useEffect(() => {
+    updateBlocks()
+    console.log("initialBlocks", blocks)
+    setLocalBlocks(blocks)
+    setBlocks(blocks)
+  }, [])
 
   const addBlock = async (updatedBlock) => {
     const newBlock = {
