@@ -7,17 +7,25 @@ import { CURRENT_DIFFICULTY } from "domain/config"
 import { TopBar } from "components/TopBar"
 import { Footer } from "components/Footer"
 import { debugLogger } from "utils"
+import { useRouter } from "next/router"
 
 export default function Home() {
   const { domain, blocks, setBlocks, updateBlocks } = useDomain()
   const [localBlocks, setLocalBlocks] = useState(blocks)
+  const [loading, setLoading] = useState(true)
+  const router = useRouter()
 
   useEffect(() => {
-    updateBlocks()
-    console.log("initialBlocks", blocks)
-    setLocalBlocks(blocks)
-    setBlocks(blocks)
-  }, [])
+    if (!loading) return
+    setTimeout(async () => {
+      setLoading(false)
+      const initialBlocks = await domain.getBlocksUseCase.execute()
+      setLocalBlocks(initialBlocks)
+      router.push("/")
+    }, 1)
+    console.log({ blocks, localBlocks, loading })
+    // setLocalBlocks(blocks)
+  }, [blocks, localBlocks, loading])
 
   // useEffect(() => {
   // THIS EFFECT IS CAUSING A CURRENT/PREVIOUS HASH ERROR
@@ -32,11 +40,11 @@ export default function Home() {
     debugLogger("Adding new block:", updatedBlock)
     try {
       const newBlock = {
-        id: localBlocks.length + 1,
+        id: blocks.length + 1,
         title: updatedBlock.title,
         blockData: updatedBlock.blockData,
         date: updatedBlock.date,
-        previousHash: localBlocks[localBlocks.length - 1] ? localBlocks[localBlocks.length - 1].currentHash : "0",
+        previousHash: blocks[blocks.length - 1] ? blocks[blocks.length - 1].currentHash : "0",
         currentHash: updatedBlock.currentHash,
         nonce: updatedBlock.nonce,
         difficulty: updatedBlock.difficulty,
@@ -68,7 +76,7 @@ export default function Home() {
         <Block
           difficulty={CURRENT_DIFFICULTY}
           isEditMode={true}
-          previousHash={localBlocks.length > 0 ? localBlocks[localBlocks.length - 1].currentHash : "0"}
+          previousHash={"PEPE"}
           onSave={(updatedBlock) => addBlock(updatedBlock)}
         />
         {localBlocks
