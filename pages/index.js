@@ -12,8 +12,16 @@ import { useRouter } from "next/router"
 export default function Home() {
   const { domain, blocks, setBlocks, updateBlocks } = useDomain()
   const [localBlocks, setLocalBlocks] = useState(blocks)
+  const [currentBlock, setCurrentBlock] = useState({ currentHash: "0" })
   const [loading, setLoading] = useState(true)
   const router = useRouter()
+
+  useEffect(() => {
+    domain.getLastBlockHashUseCase.execute().then((lastBlock) => {
+      debugLogger("Last block hash:", lastBlock)
+      setCurrentBlock(lastBlock)
+    })
+  }, [localBlocks])
 
   useEffect(() => {
     if (!loading) return
@@ -23,8 +31,8 @@ export default function Home() {
       setLocalBlocks(initialBlocks)
       router.push("/")
     }, 1)
+    setLocalBlocks(blocks)
     console.log({ blocks, localBlocks, loading })
-    // setLocalBlocks(blocks)
   }, [blocks, localBlocks, loading])
 
   // useEffect(() => {
@@ -76,7 +84,7 @@ export default function Home() {
         <Block
           difficulty={CURRENT_DIFFICULTY}
           isEditMode={true}
-          previousHash={"PEPE"}
+          previousHash={currentBlock ? currentBlock.currentHash : "GENESIS BLOCK"}
           onSave={(updatedBlock) => addBlock(updatedBlock)}
         />
         {localBlocks
