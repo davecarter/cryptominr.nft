@@ -44,7 +44,6 @@ function useDomain() {
     throw new Error(`useDomain must be used within a DomainProvider`)
   }
 
-  debugLogger("Domain Context Used", context)
   return context
 }
 

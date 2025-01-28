@@ -10,7 +10,7 @@ import { debugLogger } from "utils"
 import { useRouter } from "next/router"
 
 export default function Home() {
-  const { domain, blocks, setBlocks, updateBlocks } = useDomain()
+  const { domain, blocks, updateBlocks } = useDomain()
   const [localBlocks, setLocalBlocks] = useState(blocks)
   const [currentBlock, setCurrentBlock] = useState({ currentHash: "0" })
   const [loading, setLoading] = useState(true)
@@ -32,17 +32,8 @@ export default function Home() {
       router.push("/")
     }, 1)
     setLocalBlocks(blocks)
-    console.log({ blocks, localBlocks, loading })
+    debugLogger("Initial blocks:", blocks)
   }, [blocks, localBlocks, loading])
-
-  // useEffect(() => {
-  // THIS EFFECT IS CAUSING A CURRENT/PREVIOUS HASH ERROR
-  //   debugLogger("Synchronizing blocks:", {
-  //     domainBlocks: blocks,
-  //     localBlocks,
-  //   })
-  //   setLocalBlocks(blocks)
-  // }, [blocks])
 
   const addBlock = async (updatedBlock) => {
     debugLogger("Adding new block:", updatedBlock)

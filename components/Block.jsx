@@ -98,6 +98,7 @@ export const Block = ({
             className={styles.titleInput}
             value={editableTitle}
             onChange={(e) => setEditableTitle(e.target.value)}
+            onFocus={() => setEditableTitle("")}
             placeholder="Enter block title"
           />
         ) : (
@@ -112,8 +113,9 @@ export const Block = ({
               className={styles.blockDataInput}
               value={editableBlockData}
               onChange={(e) => setEditableBlockData(e.target.value)}
+              onFocus={() => setEditableBlockData("")}
               placeholder="Enter block data"
-              onFocus={(e) => (e.target.placeholder = "")}
+              onBlur={() => setEditableBlockData(editableBlockData || "Enter new block data")}
             />
             <span className={styles.dateInput}>{getCurrentDateInSpanishFormat()}</span>
           </>
