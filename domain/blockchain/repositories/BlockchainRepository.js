@@ -33,6 +33,12 @@ export class BlockchainRepository {
     await db.put(STORE_NAME, block)
   }
 
+  async getLastBlock() {
+    const db = await this.indexedDB()
+    const blocks = await db.getAll(STORE_NAME)
+    return blocks[blocks.length - 1]
+  }
+
   async deleteAllBlocks() {
     const db = await this.indexedDB()
     await db.clear(STORE_NAME)

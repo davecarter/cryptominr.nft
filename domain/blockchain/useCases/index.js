@@ -1,4 +1,5 @@
-export { GetBlocksUseCase } from "./GetBlocksUseCase"
 export { AddNewBlockUseCase } from "./AddNewBlockUseCase"
-export { GetMinedBlockUseCase } from "./GetMinedBlockUseCase"
 export { DeleteAllBlocksUseCase } from "./DeleteAllBlocksUseCase"
+export { GetBlocksUseCase } from "./GetBlocksUseCase"
+export { GetLastBlockHashUseCase } from "./GetLastBlockHashUseCase"
+export { GetMinedBlockUseCase } from "./GetMinedBlockUseCase"
