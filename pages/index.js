@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import styles from "../styles/Home.module.css"
-import globalStyles from "../styles/Globals.module.css"
 import { Header } from "components/Header"
 import { Block } from "components/Block"
 import { useDomain } from "components/context"
@@ -8,30 +7,43 @@ import { CURRENT_DIFFICULTY } from "domain/config"
 import { TopBar } from "components/TopBar"
 import { Footer } from "components/Footer"
 import { debugLogger } from "utils"
+import { useRouter } from "next/router"
 
 export default function Home() {
-  const { domain, blocks, updateBlocks, isLoading } = useDomain()
+  const { domain, blocks, updateBlocks } = useDomain()
   const [localBlocks, setLocalBlocks] = useState(blocks)
+  const [currentBlock, setCurrentBlock] = useState({ currentHash: "0" })
+  const [loading, setLoading] = useState(true)
+  const router = useRouter()
 
   useEffect(() => {
-    debugLogger("Synchronizing blocks:", {
-      domainBlocks: blocks,
-      isLoading: isLoading,
+    domain.getLastBlockHashUseCase.execute().then((lastBlock) => {
+      debugLogger("Last block hash:", lastBlock)
+      setCurrentBlock(lastBlock)
     })
-    if (!isLoading) {
-      setLocalBlocks(blocks)
-    }
-  }, [blocks, isLoading])
+  }, [localBlocks])
+
+  useEffect(() => {
+    if (!loading) return
+    setTimeout(async () => {
+      setLoading(false)
+      const initialBlocks = await domain.getBlocksUseCase.execute()
+      setLocalBlocks(initialBlocks)
+      router.push("/")
+    }, 1)
+    setLocalBlocks(blocks)
+    debugLogger("Initial blocks:", blocks)
+  }, [blocks, localBlocks, loading])
 
   const addBlock = async (updatedBlock) => {
     debugLogger("Adding new block:", updatedBlock)
     try {
       const newBlock = {
-        id: localBlocks.length + 1,
+        id: blocks.length + 1,
         title: updatedBlock.title,
         blockData: updatedBlock.blockData,
         date: updatedBlock.date,
-        previousHash: localBlocks[localBlocks.length - 1] ? localBlocks[localBlocks.length - 1].currentHash : "0",
+        previousHash: blocks[blocks.length - 1] ? blocks[blocks.length - 1].currentHash : "0",
         currentHash: updatedBlock.currentHash,
         nonce: updatedBlock.nonce,
         difficulty: updatedBlock.difficulty,
@@ -55,9 +67,7 @@ export default function Home() {
     })
   }, [localBlocks])
 
-  return isLoading ? (
-    <div className={globalStyles.loading}>Loading...</div>
-  ) : (
+  return (
     <div className={styles.container}>
       <Header />
       <main className={styles.main}>
@@ -65,7 +75,7 @@ export default function Home() {
         <Block
           difficulty={CURRENT_DIFFICULTY}
           isEditMode={true}
-          previousHash={localBlocks.length > 0 ? localBlocks[localBlocks.length - 1].currentHash : "0"}
+          previousHash={currentBlock ? currentBlock.currentHash : "GENESIS BLOCK"}
           onSave={(updatedBlock) => addBlock(updatedBlock)}
         />
         {localBlocks
