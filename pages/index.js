@@ -39,11 +39,11 @@ export default function Home() {
     debugLogger("Adding new block:", updatedBlock)
     try {
       const newBlock = {
-        id: blocks.length + 1,
+        id: currentBlock?.id + 1 || 100,
         title: updatedBlock.title,
         blockData: updatedBlock.blockData,
         date: updatedBlock.date,
-        previousHash: blocks[blocks.length - 1] ? blocks[blocks.length - 1].currentHash : "0",
+        previousHash: currentBlock?.currentHash || "GENESIS BLOCK",
         currentHash: updatedBlock.currentHash,
         nonce: updatedBlock.nonce,
         difficulty: updatedBlock.difficulty,
