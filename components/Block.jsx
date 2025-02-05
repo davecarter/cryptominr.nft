@@ -27,6 +27,7 @@ export const Block = ({
   const [mining, setmining] = useState(false)
 
   useEffect(() => {
+    setEditableDate(getCurrentDateInSpanishFormat())
     const updateHash = async () => {
       const dataToHash = `${editableTitle}${editableBlockData}${getCurrentDateInSpanishFormat()}${previousHash}${editableNonce}${editableDifficulty}`
       const newHash = await getCalculatedHashService({ data: dataToHash })
@@ -138,14 +139,14 @@ export const Block = ({
             value={editableDifficulty}
             onChange={(e) => setEditableDifficulty(e.target.value)}
           >
-            <option>01</option>
-            <option>02</option>
-            <option>03</option>
-            <option>04</option>
-            <option>05</option>
-            <option>06</option>
-            <option>07</option>
-            <option>08</option>
+            <option value="1">01</option>
+            <option value="2">02</option>
+            <option value="3">03</option>
+            <option value="4">04</option>
+            <option value="5">05</option>
+            <option value="6">06</option>
+            <option value="7">07</option>
+            <option value="8">08</option>
           </select>
         </span>
         <span className={styles.nonceLabel}>Block Nonce: {editableNonce}</span>
