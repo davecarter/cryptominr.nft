@@ -38,7 +38,6 @@
   .logo h3 {
     display: none;
   }
-
 }
 
 .buttons {
@@ -47,12 +46,28 @@
   margin: 16px;
 }
 
+.mobileButtons {
+  display: none;
+}
+
+@media screen and (width <=640px) {
+  .buttons {
+    display: none;
+  }
+
+  .mobileButtons {
+    display: flex;
+    gap: 8px;
+    margin: 16px;
+  }
+}
+
 .cta {
   background-color: #ff6b3e;
   border: none;
   cursor: pointer;
   font-size: large;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   white-space: nowrap;
 }
 

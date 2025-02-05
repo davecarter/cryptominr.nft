@@ -7,6 +7,14 @@
   width: 80%;
 }
 
+@media screen and (width <=640px) {
+  .container {
+    padding: 1em;
+    position: relative;
+    width: 90%;
+  }
+}
+
 .headingContainer input {
   background: transparent;
   border: none;
