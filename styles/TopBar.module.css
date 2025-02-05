@@ -74,6 +74,7 @@
 .cta {
   background-color: #ff6b3e;
   border: none;
+  color: white;
   cursor: pointer;
   font-size: large;
   padding: 0.5em 1em;
