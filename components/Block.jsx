@@ -20,7 +20,7 @@ export const Block = ({
 
   const [editableTitle, setEditableTitle] = useState(title || "")
   const [editableBlockData, setEditableBlockData] = useState(blockData || "")
-  const [editableDate] = useState(date || getCurrentDateInSpanishFormat())
+  const [editableDate, setEditableDate] = useState(date || getCurrentDateInSpanishFormat())
   const [editableCurrentHash, setEditableCurrentHash] = useState(currentHash || "")
   const [editableNonce] = useState(nonce || 0)
   const [editableDifficulty, setEditableDifficulty] = useState(difficulty || 1)
@@ -28,7 +28,7 @@ export const Block = ({
 
   useEffect(() => {
     const updateHash = async () => {
-      const dataToHash = `${editableTitle}${editableBlockData}${editableDate}${previousHash}${editableNonce}${editableDifficulty}`
+      const dataToHash = `${editableTitle}${editableBlockData}${getCurrentDateInSpanishFormat()}${previousHash}${editableNonce}${editableDifficulty}`
       const newHash = await getCalculatedHashService({ data: dataToHash })
       setEditableCurrentHash(newHash)
     }
@@ -133,7 +133,11 @@ export const Block = ({
       <div className={styles.footerContainer}>
         <span className={styles.difficultyLabel}>
           Current difficulty:{" "}
-          <select value={editableDifficulty} onChange={(e) => setEditableDifficulty(e.target.value)}>
+          <select
+            className={styles.difficultySelect}
+            value={editableDifficulty}
+            onChange={(e) => setEditableDifficulty(e.target.value)}
+          >
             <option>01</option>
             <option>02</option>
             <option>03</option>

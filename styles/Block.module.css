@@ -119,6 +119,20 @@
   top: 10px;
 }
 
+.difficultySelect {
+  background: #bddfe9;
+  border: none;
+  color: black;
+  font-size: 1em;
+  margin: 0 0 0 4px;
+  padding: 4px 8px;
+  width: 80px;
+}
+
+.difficultySelect:focus {
+  outline: none;
+}
+
 @media screen and (width <=640px) {
   .blockDataLabel {
     padding-left: 0;
