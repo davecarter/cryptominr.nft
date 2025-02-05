@@ -20,15 +20,16 @@ export const Block = ({
 
   const [editableTitle, setEditableTitle] = useState(title || "")
   const [editableBlockData, setEditableBlockData] = useState(blockData || "")
-  const [editableDate] = useState(date || getCurrentDateInSpanishFormat())
+  const [editableDate, setEditableDate] = useState(date || getCurrentDateInSpanishFormat())
   const [editableCurrentHash, setEditableCurrentHash] = useState(currentHash || "")
   const [editableNonce] = useState(nonce || 0)
-  const [editableDifficulty] = useState(difficulty || 1)
+  const [editableDifficulty, setEditableDifficulty] = useState(difficulty || 1)
   const [mining, setmining] = useState(false)
 
   useEffect(() => {
+    setEditableDate(getCurrentDateInSpanishFormat())
     const updateHash = async () => {
-      const dataToHash = `${editableTitle}${editableBlockData}${editableDate}${previousHash}${editableNonce}${editableDifficulty}`
+      const dataToHash = `${editableTitle}${editableBlockData}${getCurrentDateInSpanishFormat()}${previousHash}${editableNonce}${editableDifficulty}`
       const newHash = await getCalculatedHashService({ data: dataToHash })
       setEditableCurrentHash(newHash)
     }
@@ -131,7 +132,23 @@ export const Block = ({
       </div>
 
       <div className={styles.footerContainer}>
-        <span className={styles.difficultyLabel}>Current difficulty: {editableDifficulty}</span>
+        <span className={styles.difficultyLabel}>
+          Current difficulty:{" "}
+          <select
+            className={styles.difficultySelect}
+            value={editableDifficulty}
+            onChange={(e) => setEditableDifficulty(e.target.value)}
+          >
+            <option value="1">01</option>
+            <option value="2">02</option>
+            <option value="3">03</option>
+            <option value="4">04</option>
+            <option value="5">05</option>
+            <option value="6">06</option>
+            <option value="7">07</option>
+            <option value="8">08</option>
+          </select>
+        </span>
         <span className={styles.nonceLabel}>Block Nonce: {editableNonce}</span>
       </div>
       <span className={styles.previousHashContainer}>

@@ -7,6 +7,14 @@
   width: 80%;
 }
 
+@media screen and (width <=640px) {
+  .container {
+    padding: 1em;
+    position: relative;
+    width: 90%;
+  }
+}
+
 .headingContainer input {
   background: transparent;
   border: none;
@@ -117,6 +125,20 @@
   padding: 1em 0;
   position: relative;
   top: 10px;
+}
+
+.difficultySelect {
+  background: #bddfe9;
+  border: none;
+  color: black;
+  font-size: 1em;
+  margin: 0 0 0 4px;
+  padding: 4px 8px;
+  width: 80px;
+}
+
+.difficultySelect:focus {
+  outline: none;
 }
 
 @media screen and (width <=640px) {
