@@ -50,8 +50,17 @@
   display: none;
 }
 
+.logoHeading {
+  display: flex;
+  gap: 16px;
+}
+
 @media screen and (width <=640px) {
   .buttons {
+    display: none;
+  }
+
+  .logoHeading {
     display: none;
   }
 

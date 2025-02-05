@@ -1,4 +1,4 @@
-import { active, container, logo, cta, buttons, mobileButtons } from "../styles/TopBar.module.css"
+import { active, container, logo, cta, buttons, mobileButtons, logoHeading } from "../styles/TopBar.module.css"
 import React, { useState } from "react"
 import { Modal } from "./Modal"
 import { useDomain } from "./context"
@@ -28,7 +28,7 @@ export const TopBar = () => {
       <nav className={container}>
         <div className={logo}>
           <img src="/images/cryptominr-logo.png" alt="CryptoMinr Logo" width={50} />
-          <h1>CryptoMinr.nft</h1>
+          <h1 className={logoHeading}>CryptoMinr.nft</h1>
           <h3>A simple blockchain simulation tool</h3>
         </div>
         <div className={buttons}>
@@ -44,7 +44,7 @@ export const TopBar = () => {
         </div>
         <div className={mobileButtons}>
           <button className={`${cta} ${pathname === "/" ? active : ""}`} onClick={() => router.push("/")}>
-            Blck
+            Blocks
           </button>
           <button className={`${cta} ${pathname === "/docs" ? active : ""}`} onClick={() => router.push("/docs")}>
             Doc
