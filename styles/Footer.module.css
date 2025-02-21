@@ -1,14 +1,22 @@
+.footer a {
+  display: flex;
+  flex: 0 0 auto;
+}
+
 .footer {
   background-color: #7fda9aab;
   color: black;
   display: flex;
   font-weight: bold;
   gap: 16px;
-  justify-content: flex-end;
+  justify-content: center;
+  margin: 0 25%;
   padding: 1rem;
+  width: 75%;
 }
 
-.footer a {
-  display: flex;
-  flex: 0 0 auto;
+@media screen and (width <=640px) {
+  .footerMeta {
+    display: none;
+  }
 }
