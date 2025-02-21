@@ -3,6 +3,7 @@ import styles from "../styles/Docs.module.css"
 import { Footer } from "components/Footer"
 import { TopBar } from "components/TopBar"
 import { useRouter } from "next/router"
+import { Sidebar } from "components/Sidebar"
 
 export default function Docs() {
   const router = useRouter()
@@ -12,88 +13,70 @@ export default function Docs() {
       <Header />
       <main className={styles.main}>
         <TopBar />
+        <Sidebar />
         <div className={styles.content}>
-          <section className={styles.heroSection}>
-            <h1 className={styles.mainTitle}>
-              Blockchain Builder Tool: Your Gateway to Understanding Blockchain Technology
-            </h1>
-            <p className={styles.subtitle}>
-              Explore the fundamentals of blockchain through an interactive, hands-on learning experience
-            </p>
-          </section>
-
           <section className={styles.conceptSection}>
-            <h2 className={styles.sectionTitle}>Block Creation Fundamentals</h2>
+            <h2 className={styles.sectionTitle}>Blockchain Fundamentals</h2>
             <div className={styles.conceptGrid}>
               <div className={styles.conceptCard}>
-                <h3>What is a Block?</h3>
+                <h2 id="what-problem-solves-a-blockchain">What problem solves a Blockchain?</h2>
                 <div>
-                  A block is the fundamental unit of a blockchain, containing:
-                  <ul className={styles.list}>
-                    <li>Unique Title</li>
-                    <li>Block Data</li>
-                    <li>Timestamp</li>
-                    <li>Previous Block's Hash</li>
-                    <li>Current Block's Hash</li>
-                    <li>Nonce</li>
-                  </ul>
+                  <p className={styles.conceptText}>
+                    Sending digital information across the internet is easy. Every time we share a picture, we're
+                    actually sending a copy of the original file. But what happens when we need to transfer value?
+                    Unlike a picture, value shouldn't be duplicated—we want to send it only once while ensuring it isn't
+                    copied or spent more than once. This challenge is known as the
+                    <strong> double-spending problem</strong>. Blockchain addresses this issue by creating a transparent
+                    and immutable digital ledger that ensures secure and verifiable transactions.
+                  </p>
+                  <p className={styles.conceptText}>
+                    A blockchain is a <strong>decentralized</strong>, distributed ledger that records transactions
+                    across a network of computers. Each transaction is grouped into a block, which is cryptographically
+                    linked to the previous block, forming a chain. This structure ensures that once a block is added to
+                    the chain, it cannot be altered without changing all subsequent blocks, making the data
+                    tamper-proof.
+                  </p>
                 </div>
               </div>
+            </div>
+            <div className={styles.conceptGrid}>
               <div className={styles.conceptCard}>
-                <h3>Block Creation Process</h3>
+                <h2 id="cryptographically-protected">Cryptographically protected</h2>
                 <div>
-                  Mining a block involves several steps:
-                  <ol className={styles.list}>
-                    <li>Enter a descriptive title</li>
-                    <li>Add meaningful block data</li>
-                    <li>System generates timestamp</li>
-                    <li>Calculate hash using input data</li>
-                    <li>Apply mining process with nonce</li>
-                  </ol>
+                  <p className={styles.conceptText}>
+                    Value is stored safely using cryptography without any other third party entity being involved in the
+                    process. Imagine that you want to send a message to a friend safely without anyone being able to get
+                    its contents if the message is intercepted. You can encrypt the message using a secret key, and only
+                    your friend can decrypt it using the same key. This is how blockchain works, but on a much larger
+                    scale because we are sending value across a network of computers of unknown entities so we need to
+                    ensure that the value is safe and secure.
+                  </p>
                 </div>
               </div>
             </div>
-          </section>
-
-          <section className={styles.detailSection}>
-            <h2 className={styles.sectionTitle}>Deep Dive: Block Components</h2>
-
-            <div className={styles.detailCard}>
-              <h3>Block Data: The Core of Information</h3>
-              <div>
-                Block data represents the payload of your blockchain entry. In our tool, you can input text that will be
-                cryptographically processed to ensure:
-                <ul>
-                  <li>Immutability: Data cannot be altered without changing the entire chain</li>
-                  <li>Transparency: All data is verifiable</li>
-                  <li>Security: Cryptographic hashing prevents tampering</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className={styles.detailCard}>
-              <h3>Nonce: The Mining Mechanism</h3>
-              <div>
-                The nonce is a crucial component in blockchain's proof-of-work mechanism:
-                <ul>
-                  <li>Randomly generated number</li>
-                  <li>Incremented until hash meets difficulty criteria</li>
-                  <li>Ensures computational work is done to create a block</li>
-                  <li>Prevents easy block generation</li>
-                </ul>
-                As difficulty increases, finding a valid hash becomes more computationally intensive.
+            <div className={styles.conceptGrid}>
+              <div className={styles.conceptCard}>
+                <h2 id="hashing-functions">Hashing functions</h2>
+                <div>
+                  <p className={styles.conceptText}>
+                    Hashing data allows cypher any data of any size into a fixed-size string of characters. This is
+                    useful because it allows us to store data in a more efficient way and to ensure that the data has
+                    not been tampered with. If the data is changed, the hash will change as well. This is how blockchain
+                    ensures that the data is secure and has not been tampered with.
+                  </p>
+                </div>
               </div>
             </div>
           </section>
 
           <section className={styles.callToActionSection}>
-            <h2>Ready to Build Your First Blockchain?</h2>
+            <h2>Ready to try it by yourself?</h2>
             <p>
               Start exploring, creating blocks, and understanding the revolutionary technology that's changing the
               digital landscape.
             </p>
             <button onClick={() => router.push("/")} className={styles.startButton}>
-              Begin Blockchain Journey
+              Build your Blockchain
             </button>
           </section>
         </div>
