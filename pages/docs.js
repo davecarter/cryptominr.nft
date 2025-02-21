@@ -20,7 +20,7 @@ export default function Docs() {
             <div className={styles.conceptGrid}>
               <div className={styles.conceptCard}>
                 <h2 id="what-problem-solves-a-blockchain">What problem solves a Blockchain?</h2>
-                <div>
+                <div className={styles.conceptCardContent}>
                   <p className={styles.conceptText}>
                     Sending digital information across the internet is easy. Every time we share a picture, we're
                     actually sending a copy of the original file. But what happens when we need to transfer value?
@@ -42,7 +42,7 @@ export default function Docs() {
             <div className={styles.conceptGrid}>
               <div className={styles.conceptCard}>
                 <h2 id="cryptographically-protected">Cryptographically protected</h2>
-                <div>
+                <div className={styles.conceptCardImageContent}>
                   <p className={styles.conceptText}>
                     Value is stored safely using cryptography without any other third party entity being involved in the
                     process. Imagine that you want to send a message to a friend safely without anyone being able to get
@@ -50,14 +50,27 @@ export default function Docs() {
                     your friend can decrypt it using the same key. This is how blockchain works, but on a much larger
                     scale because we are sending value across a network of computers of unknown entities so we need to
                     ensure that the value is safe and secure.
+                    <br />
+                    <br />
+                    By securing the data with cryptography,
+                    <strong>
+                      we can trust that infraestructure without having to trust the entities that are part of it
+                      removing the need for a third party to validate the transactions.
+                    </strong>
                   </p>
+                  <img
+                    src="/images/cryptographically-protected.jpg"
+                    alt="Hashing functions"
+                    className={styles.conceptImage}
+                  />
                 </div>
               </div>
             </div>
             <div className={styles.conceptGrid}>
               <div className={styles.conceptCard}>
                 <h2 id="hashing-functions">Hashing functions</h2>
-                <div>
+                <div className={styles.conceptCardImageContent}>
+                  <img src="/images/hashing.jpg" alt="Hashing functions" className={styles.conceptImage} />
                   <p className={styles.conceptText}>
                     Hashing data allows cypher any data of any size into a fixed-size string of characters. This is
                     useful because it allows us to store data in a more efficient way and to ensure that the data has
