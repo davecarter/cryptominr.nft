@@ -72,6 +72,13 @@ export default function Home() {
       <Header />
       <main className={styles.main}>
         <TopBar />
+        <section className={styles.heroSection}>
+          <h2>CryptoMinr</h2>
+          <h1 className={styles.mainTitle}>Your gateway to understanding Blockchain technology</h1>
+          <p className={styles.subtitle}>
+            Explore the fundamentals of blockchain through an interactive, hands-on learning experience
+          </p>
+        </section>
         <Block
           difficulty={CURRENT_DIFFICULTY}
           isEditMode={true}
