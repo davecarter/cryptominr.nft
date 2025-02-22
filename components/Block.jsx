@@ -150,18 +150,22 @@ export const Block = ({
 
       <div className={styles.footerContainer}>
         <span className={styles.difficultyLabel}>
-          Current difficulty:{" "}
-          <select
-            className={styles.difficultySelect}
-            value={editableDifficulty}
-            onChange={(e) => setEditableDifficulty(e.target.value)}
-          >
-            {[...Array(8)].map((_, i) => (
-              <option key={i} value={i + 1}>
-                0{i + 1}
-              </option>
-            ))}
-          </select>
+          {isEditMode ? "Current difficulty: " : "Mined difficulty: "}
+          {isEditMode ? (
+            <select
+              className={styles.difficultySelect}
+              value={editableDifficulty}
+              onChange={(e) => setEditableDifficulty(e.target.value)}
+            >
+              {[...Array(8)].map((_, i) => (
+                <option key={i} value={i + 1}>
+                  0{i + 1}
+                </option>
+              ))}
+            </select>
+          ) : (
+            editableDifficulty
+          )}
         </span>
         <span className={!mining ? styles.nonceLabel : styles.miningNonce}>
           Block Nonce: {!mining ? editableNonce : miningNonce}

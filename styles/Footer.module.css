@@ -10,6 +10,18 @@
   font-weight: bold;
   gap: 16px;
   justify-content: center;
+  margin: 0;
+  padding: 1rem;
+  width: 100%;
+}
+
+.footerDocs {
+  background-color: #7fda9aab;
+  color: black;
+  display: flex;
+  font-weight: bold;
+  gap: 16px;
+  justify-content: center;
   margin: 0 25%;
   padding: 1rem;
   width: 75%;
