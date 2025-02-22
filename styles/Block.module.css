@@ -248,6 +248,11 @@
   width: 100%;
 }
 
+.miningNonce {
+  background: #49ee6c;
+  padding: 6px;
+}
+
 @keyframes mining-stripes {
   from {
     background-position: 0%;
