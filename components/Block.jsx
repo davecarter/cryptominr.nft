@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import styles from "../styles/Block.module.css"
 import { getCalculatedHashService } from "domain/blockchain/service"
 import { useDomain } from "components/context"
@@ -24,7 +24,22 @@ export const Block = ({
   const [editableCurrentHash, setEditableCurrentHash] = useState(currentHash || "")
   const [editableNonce] = useState(nonce || 0)
   const [editableDifficulty, setEditableDifficulty] = useState(difficulty || 1)
-  const [mining, setmining] = useState(false)
+  const [mining, setMining] = useState(false)
+  const [miningNonce, setMiningNonce] = useState(0)
+
+  const nonceRef = useRef(miningNonce)
+
+  useEffect(() => {
+    const updateNonce = () => {
+      if (window.nonce !== undefined) {
+        setMiningNonce(window.nonce)
+        nonceRef.current = window.nonce
+      }
+    }
+
+    const interval = setInterval(updateNonce, 100)
+    return () => clearInterval(interval)
+  }, [])
 
   useEffect(() => {
     setEditableDate(getCurrentDateInSpanishFormat())
@@ -56,6 +71,8 @@ export const Block = ({
         difficulty: editableDifficulty,
       })
 
+      window.nonce = validNonce
+
       onSave({
         id,
         title: editableTitle,
@@ -73,7 +90,7 @@ export const Block = ({
   }
 
   const handleMining = async () => {
-    setmining(true)
+    setMining(true)
 
     try {
       await handleCalculateHash()
@@ -82,7 +99,7 @@ export const Block = ({
     } finally {
       setEditableTitle("")
       setEditableBlockData("Enter new block data")
-      setmining(false)
+      setMining(false)
     }
   }
 
@@ -90,7 +107,7 @@ export const Block = ({
     <div className={styles.container}>
       <span className={styles.currentHashContainer}>
         <span className={styles.currentHash}>Current Hash:</span>
-        <span className={styles.currentHashData}> {editableCurrentHash}</span>
+        <span className={styles.currentHashData}> {!mining ? editableCurrentHash : window.hash}</span>
       </span>
       <div className={styles.headingContainer}>
         {isEditMode ? (
@@ -133,23 +150,26 @@ export const Block = ({
 
       <div className={styles.footerContainer}>
         <span className={styles.difficultyLabel}>
-          Current difficulty:{" "}
-          <select
-            className={styles.difficultySelect}
-            value={editableDifficulty}
-            onChange={(e) => setEditableDifficulty(e.target.value)}
-          >
-            <option value="1">01</option>
-            <option value="2">02</option>
-            <option value="3">03</option>
-            <option value="4">04</option>
-            <option value="5">05</option>
-            <option value="6">06</option>
-            <option value="7">07</option>
-            <option value="8">08</option>
-          </select>
+          {isEditMode ? "Current difficulty: " : "Mined difficulty: "}
+          {isEditMode ? (
+            <select
+              className={styles.difficultySelect}
+              value={editableDifficulty}
+              onChange={(e) => setEditableDifficulty(e.target.value)}
+            >
+              {[...Array(8)].map((_, i) => (
+                <option key={i} value={i + 1}>
+                  0{i + 1}
+                </option>
+              ))}
+            </select>
+          ) : (
+            editableDifficulty
+          )}
         </span>
-        <span className={styles.nonceLabel}>Block Nonce: {editableNonce}</span>
+        <span className={!mining ? styles.nonceLabel : styles.miningNonce}>
+          Block Nonce: {!mining ? editableNonce : miningNonce}
+        </span>
       </div>
       <span className={styles.previousHashContainer}>
         <span className={styles.previousHash}>Previous Hash:</span>

@@ -1,6 +1,7 @@
 html,
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
   letter-spacing: -0.2px;
   margin: 0;
@@ -28,6 +29,5 @@ input {
 
   body {
     background: linear-gradient(199deg, #00357f, #96b57d, #327da8);
-    color: white;
   }
 }

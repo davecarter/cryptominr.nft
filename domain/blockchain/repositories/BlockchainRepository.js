@@ -56,6 +56,8 @@ export class BlockchainRepository {
         validHash = hash
         break
       }
+      window.hash = hash
+      window.nonce = nonce
       nonce++
     }
 

@@ -16,6 +16,31 @@
   padding: 8rem 4rem;
 }
 
+.heroSection {
+  color: var(--white);
+  font-size: 1.6em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.mainTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  max-width: 800px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin: 0 auto 1em;
+  max-width: 600px;
+  text-align: center;
+}
+
 @media screen and (width <=640px) {
   .main {
     align-items: center;
@@ -25,43 +50,35 @@
     min-height: 90vh;
     padding: 4rem 0;
   }
-}
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
-}
+  .heroSection {
+    font-size: 1.3em;
+    margin: 2em 2em 0;
+  }
 
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
+  .mainTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
 
-.title {
-  font-size: 4rem;
-  font-weight: bolder;
-  letter-spacing: -2px;
-  line-height: 1.15;
-  margin: 16px 0;
-}
-
-.title,
-.description {
-  text-align: center;
-}
-
-.description {
-  font-size: 1.5rem;
-  line-height: 1.5;
-  margin: 4rem 0;
+  .subtitle {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin: 0 auto;
+    max-width: 600px;
+    text-align: center;
+  }
 }
 
 .code {
   background: #fafafa;
   border-radius: 5px;
-  font-family: Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
-    "Courier New", monospace;
+  font-family:
+    Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New",
+    monospace;
   font-size: 1.1rem;
   padding: 0.75rem;
 }

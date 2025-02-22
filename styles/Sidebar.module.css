@@ -1,0 +1,40 @@
+.sidebar {
+  background-color: #1c1c1c;
+  color: azure;
+  height: 100%;
+  left: 0;
+  padding-top: 80px;
+  position: fixed;
+  top: 0;
+  width: 25%;
+  z-index: 0;
+}
+
+.sidebarContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 36px;
+}
+
+.sidebarTitle {
+  font-size: 1.5em;
+  margin-bottom: 0;
+}
+
+.sidebarList {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.8;
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+.activeLink {
+  border-left: 4px solid #ff4b02;
+  color: #ff4b02;
+  font-weight: bold;
+  padding-left: 8px;
+  transition: all 0.2s ease-in-out;
+}
