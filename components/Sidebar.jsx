@@ -47,6 +47,11 @@ export const Sidebar = () => {
             </a>
           </li>
           <li className={sidebarListItem}>
+            <a href="#decentralized-execution" className={active === "decentralized-execution" ? activeLink : ""}>
+              Decentralized execution
+            </a>
+          </li>
+          <li className={sidebarListItem}>
             <a
               href="#cryptographically-protected"
               className={active === "cryptographically-protected" ? activeLink : ""}

@@ -39,6 +39,21 @@ export default function Docs() {
                 </div>
               </div>
             </div>
+
+            <div className={styles.conceptGrid}>
+              <div className={styles.conceptCard}>
+                <h2 id="decentralized-execution">Decentralized execution</h2>
+                <div className={styles.conceptCardImageContent}>
+                  <p className={styles.conceptText}>
+                    The execution of Ethereum smart contract code ensures that the deployed code will continue to
+                    function in the same way indefinitely. Each node in the network maintains a copy of this code, and
+                    the underlying protocol guarantees that it is always executed consistently.
+                  </p>
+                  <img src="/images/decentralized.jpg" alt="Decentralized execution" className={styles.conceptImage} />
+                </div>
+              </div>
+            </div>
+
             <div className={styles.conceptGrid}>
               <div className={styles.conceptCard}>
                 <h2 id="cryptographically-protected">Cryptographically protected</h2>
@@ -58,11 +73,6 @@ export default function Docs() {
                       removing the need for a third party to validate the transactions.
                     </strong>
                   </p>
-                  <img
-                    src="/images/cryptographically-protected.jpg"
-                    alt="Hashing functions"
-                    className={styles.conceptImage}
-                  />
                 </div>
               </div>
             </div>
@@ -72,8 +82,8 @@ export default function Docs() {
                 <div className={styles.conceptCardImageContent}>
                   <img src="/images/hashing.jpg" alt="Hashing functions" className={styles.conceptImage} />
                   <p className={styles.conceptText}>
-                    Hashing data allows cypher any data of any size into a fixed-size string of characters. This is
-                    useful because it allows us to store data in a more efficient way and to ensure that the data has
+                    Hashing functions allows cyphering any data of any size into a fixed-size string of characters. This
+                    is useful because it allows us to store data in a more efficient way and to ensure that the data has
                     not been tampered with. If the data is changed, the hash will change as well. This is how blockchain
                     ensures that the data is secure and has not been tampered with.
                   </p>
