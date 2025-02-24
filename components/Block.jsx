@@ -2,13 +2,14 @@ import { useState, useEffect, useRef } from "react"
 import styles from "../styles/Block.module.css"
 import { getCalculatedHashService } from "domain/blockchain/service"
 import { useDomain } from "components/context"
-import { getCurrentDateInSpanishFormat, formatNumeral } from "utils"
+import { getCurrentDateInSpanishFormat, formatNumeral, getElapsedTime } from "utils"
 
 export const Block = ({
   id,
   title,
   blockData,
   date,
+  elapsedTime,
   previousHash,
   currentHash,
   nonce,
@@ -28,6 +29,7 @@ export const Block = ({
   const [miningNonce, setMiningNonce] = useState(0)
 
   const nonceRef = useRef(miningNonce)
+  const initialTimeRef = useRef(new Date())
 
   useEffect(() => {
     const updateNonce = () => {
@@ -61,6 +63,7 @@ export const Block = ({
       title: editableTitle,
       blockData: editableBlockData,
       date: editableDate,
+      elapsedTime: initialTimeRef.current,
       previousHash: previousHash,
       difficulty: editableDifficulty,
     }
@@ -79,6 +82,7 @@ export const Block = ({
         blockData: editableBlockData,
         date: editableDate,
         previousHash,
+        elapsedTime: getElapsedTime(initialTimeRef.current),
         currentHash: validHash,
         nonce: formatNumeral(validNonce),
         difficulty: editableDifficulty,
@@ -90,6 +94,7 @@ export const Block = ({
   }
 
   const handleMining = async () => {
+    initialTimeRef.current = new Date()
     setMining(true)
 
     try {
@@ -112,6 +117,7 @@ export const Block = ({
       <div className={styles.headingContainer}>
         {isEditMode ? (
           <input
+            disabled={mining}
             type="text"
             className={styles.titleInput}
             value={editableTitle}
@@ -128,6 +134,7 @@ export const Block = ({
         {isEditMode ? (
           <>
             <textarea
+              disabled={mining}
               className={styles.blockDataInput}
               value={editableBlockData}
               onChange={(e) => setEditableBlockData(e.target.value)}
@@ -171,6 +178,13 @@ export const Block = ({
           Block Nonce: {!mining ? editableNonce : miningNonce}
         </span>
       </div>
+      {!isEditMode && (
+        <span className={styles.miningTimeContainer}>
+          <span className={styles.miningTime}>
+            Mining time: {elapsedTime} <small>{`${"HH:MM:SS"}`}</small>
+          </span>
+        </span>
+      )}
       <span className={styles.previousHashContainer}>
         <span className={styles.previousHash}>Previous Hash:</span>
         <span className={styles.previousHashData}>{previousHash}</span>

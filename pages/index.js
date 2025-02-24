@@ -46,6 +46,7 @@ export default function Home() {
         previousHash: currentBlock?.currentHash || "GENESIS BLOCK",
         currentHash: updatedBlock.currentHash,
         nonce: updatedBlock.nonce,
+        elapsedTime: updatedBlock.elapsedTime,
         difficulty: updatedBlock.difficulty,
       }
 
