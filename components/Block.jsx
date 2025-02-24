@@ -175,7 +175,7 @@ export const Block = ({
           )}
         </span>
         <span className={!mining ? styles.nonceLabel : styles.miningNonce}>
-          Block Nonce: {!mining ? editableNonce : miningNonce}
+          Block Nonce: {!mining ? editableNonce : formatNumeral(miningNonce)}
         </span>
       </div>
       {!isEditMode && (
