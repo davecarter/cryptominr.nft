@@ -1,7 +1,7 @@
 .container {
   align-items: center;
   backdrop-filter: blur(10px);
-  background: rgb(255 75 2 / 80%);
+  background: #ff4b02cc;
   box-shadow: 0 5px 10px 2px rgb(0 0 0 / 20%);
   display: flex;
   gap: 16px;

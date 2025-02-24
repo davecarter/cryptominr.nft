@@ -65,8 +65,7 @@
 }
 
 .miningTime {
-  background: #bddfe9;
-  border: 4px solid #84b8c9;
+  background: #ff4b02cc;
   color: black;
   flex-basis: 100%;
   padding: 8px;
