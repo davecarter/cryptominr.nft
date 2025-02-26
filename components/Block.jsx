@@ -103,7 +103,7 @@ export const Block = ({
       console.error("Error during mining:", error)
     } finally {
       setEditableTitle("")
-      setEditableBlockData("Enter new block data")
+      setEditableBlockData("Enter block data")
       setMining(false)
     }
   }
@@ -145,7 +145,7 @@ export const Block = ({
               onChange={(e) => setEditableBlockData(e.target.value)}
               onFocus={() => setEditableBlockData("")}
               placeholder="Enter block data"
-              onBlur={() => setEditableBlockData(editableBlockData || "Enter new block data")}
+              onBlur={() => setEditableBlockData(editableBlockData || "Enter block data")}
             />
             <span className={styles.dateInput}>{getCurrentDateInSpanishFormat()}</span>
           </>
