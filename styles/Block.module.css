@@ -1,8 +1,9 @@
 .container {
-  background-color: #fff;
+  background-color: #80ffff73;
+  border-radius: 16px;
   box-shadow: 5px 7px 20px 0 black;
   margin: 54px auto 0;
-  padding: 1em;
+  padding: 0;
   position: relative;
   width: 80%;
 }
@@ -20,7 +21,22 @@
   border: none;
   color: #000;
   font-size: 1.2em;
-  width: 80%;
+  margin: -8px 0;
+  padding: 12px 16px;
+  width: 100%;
+}
+
+.blockDataInput::placeholder {
+  color: #000;
+}
+
+.headingContainer input::placeholder {
+  color: #494949;
+}
+
+.headingContainer input:focus {
+  background-color: #ffffff3d;
+  outline: none;
 }
 
 .headingContainer {
@@ -28,7 +44,7 @@
   display: flex;
   font-size: 1.8em;
   justify-content: space-between;
-  padding: 16px 0 0;
+  padding: 0;
 }
 
 @media screen and (width <=640px) {
@@ -52,15 +68,20 @@
   justify-content: space-between;
 }
 
+.currentHashContainer {
+  background-color: #ffffff9c;
+  border-radius: 15px 15px 0 0;
+  margin-bottom: 8px;
+}
+
 .currentHash,
 .previousHash,
 .miningTime {
-  background: #7fda9b;
   color: black;
-  flex-basis: 15%;
+  flex-basis: 12%;
   font-weight: bold;
   min-width: 140px;
-  padding: 12px;
+  padding: 12px 0 12px 12px;
   width: 100%;
 }
 
@@ -74,9 +95,8 @@
 .currentHashData,
 .previousHashData {
   align-content: center;
-  background: #c6c6c6;
   color: black;
-  flex-basis: 85%;
+  flex-basis: 88%;
   font-weight: bold;
   overflow: hidden;
   padding: 12px;
@@ -91,16 +111,40 @@
 }
 
 .blockID {
+  align-items: flex-end;
+  background-color: #21ff7f75;
+  color: black;
+  display: flex;
+  flex-direction: column;
   font-size: 0.6em;
-  margin-top: 8px;
+  height: 72px;
+  margin-top: 0;
+  min-width: 100px;
+  padding: 16px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 43px;
+}
+
+.blockIDLabel {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.blockIDNumber {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 1em;
 }
 
 .blockData {
-  background: #bddfe9;
   color: black;
-  margin: 1em 0;
-  padding: 1em;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin: 0;
+  padding: 0;
 }
 
 .blockDataLabel {
@@ -162,18 +206,18 @@
 }
 
 .blockDataInput {
-  background: #bddfe9;
+  background: transparent;
   border: none;
   color: black;
-  margin: 0;
-  min-height: 150px;
-  padding: 0;
-  position: relative;
+  margin: 9px 0;
+  min-height: 120px;
+  padding: 16px;
   resize: none;
   width: 100%;
 }
 
 .blockDataInput:focus {
+  background-color: #ffffff3d;
   outline: none;
 }
 

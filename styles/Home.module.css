@@ -31,6 +31,7 @@
   line-height: 1.2;
   margin-bottom: 1rem;
   max-width: 800px;
+  text-shadow: 2px 2px 5px #00000080;
 }
 
 .subtitle {

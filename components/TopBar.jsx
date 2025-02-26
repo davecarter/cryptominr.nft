@@ -44,24 +44,18 @@ export const TopBar = () => {
         </div>
         <div className={buttons}>
           <button className={`${cta} ${pathname === "/" ? active : ""}`} onClick={() => router.push("/")}>
-            Blockchain
+            Build
           </button>
           <button className={`${cta} ${pathname === "/docs" ? active : ""}`} onClick={() => router.push("/docs")}>
-            Documentation
-          </button>
-          <button className={cta} onClick={handleDeleteClick}>
-            Delete blocks
+            Learn
           </button>
         </div>
         <div className={mobileButtons}>
           <button className={`${cta} ${pathname === "/" ? active : ""}`} onClick={() => router.push("/")}>
-            Blocks
+            Build
           </button>
           <button className={`${cta} ${pathname === "/docs" ? active : ""}`} onClick={() => router.push("/docs")}>
             Doc
-          </button>
-          <button className={cta} onClick={handleDeleteClick}>
-            Del
           </button>
         </div>
       </nav>

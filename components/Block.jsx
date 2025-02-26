@@ -128,7 +128,12 @@ export const Block = ({
         ) : (
           <h2 className={styles.title}>{title}</h2>
         )}
-        <h3 className={styles.blockID}>Block ID # {id}</h3>
+        {!isEditMode && (
+          <div className={styles.blockID}>
+            <span className={styles.blockIDLabel}>Block ID</span>
+            <span className={styles.blockIDNumber}>{id}</span>
+          </div>
+        )}
       </div>
       <div className={styles.blockData}>
         {isEditMode ? (
