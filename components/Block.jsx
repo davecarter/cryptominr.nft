@@ -177,20 +177,15 @@ export const Block = ({
             />
           </>
         ) : (
-          <>
-            <span className={styles.blockDataLabelContainer}>
-              <span className={styles.blockDataLabel}>Block data:</span>
-              <span className={styles.blockDateLabel}>{date}</span>
-            </span>
-            <p className={styles.blockDataContent}>{blockData}</p>
-          </>
+          <div className={styles.blockDataMined}>{blockData}</div>
         )}
       </div>
 
       {!isEditMode && (
         <span className={styles.miningTimeContainer}>
           <span className={styles.miningTime}>
-            Mining time: {elapsedTime} <small>{`${"HH:MM:SS"}`}</small>
+            Mining time: <br />
+            {elapsedTime}
           </span>
         </span>
       )}
