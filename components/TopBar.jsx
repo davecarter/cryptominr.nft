@@ -8,29 +8,13 @@ import {
   logoHeading,
   logoContainer,
 } from "../styles/TopBar.module.css"
-import React, { useState } from "react"
+import React from "react"
 import { Modal } from "./Modal"
-import { useDomain } from "./context"
 import { useRouter } from "next/router"
 
 export const TopBar = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const { deleteAllBlocks } = useDomain()
   const router = useRouter()
   const { pathname } = router
-
-  const handleDeleteClick = () => {
-    setIsModalOpen(true)
-  }
-
-  const handleModalClose = () => {
-    setIsModalOpen(false)
-  }
-
-  const handleConfirmDelete = async () => {
-    setIsModalOpen(false)
-    await deleteAllBlocks()
-  }
 
   return (
     <>
@@ -59,7 +43,6 @@ export const TopBar = () => {
           </button>
         </div>
       </nav>
-      {isModalOpen && <Modal onClose={handleModalClose} onConfirm={handleConfirmDelete} />}
     </>
   )
 }
