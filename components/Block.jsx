@@ -3,6 +3,7 @@ import styles from "../styles/Block.module.css"
 import { getCalculatedHashService } from "domain/blockchain/service"
 import { useDomain } from "components/context"
 import { getCurrentDateInSpanishFormat, formatNumeral, getElapsedTime } from "utils"
+import { DateComponent } from "./Date"
 
 export const Block = ({
   id,
@@ -114,6 +115,33 @@ export const Block = ({
         <span className={styles.currentHash}>Current Hash:</span>
         <span className={styles.currentHashData}> {!mining ? editableCurrentHash : window.hash}</span>
       </span>
+      <div className={styles.dateContainer}>
+        <span className={styles.dateInput}>{<DateComponent />}</span>
+      </div>
+      <div className={styles.footerContainer}>
+        <span className={styles.footerContainerLabel}>
+          {isEditMode ? "Current difficulty: " : "Mined difficulty: "}
+          {isEditMode ? (
+            <select
+              className={styles.difficultySelect}
+              value={editableDifficulty}
+              onChange={(e) => setEditableDifficulty(e.target.value)}
+            >
+              {[...Array(8)].map((_, i) => (
+                <option key={i} value={i + 1}>
+                  0{i + 1}
+                </option>
+              ))}
+            </select>
+          ) : (
+            editableDifficulty
+          )}
+        </span>
+        <span className={!mining ? styles.nonceContainer : styles.nonceContainerMining}>
+          <span className={styles.nonceLabel}>Block Nonce:</span>
+          <span className={styles.nonceData}>{!mining ? editableNonce : miningNonce}</span>
+        </span>
+      </div>
       <div className={styles.headingContainer}>
         {isEditMode ? (
           <input
@@ -147,7 +175,6 @@ export const Block = ({
               placeholder="Enter block data"
               onBlur={() => setEditableBlockData(editableBlockData || "Enter block data")}
             />
-            <span className={styles.dateInput}>{getCurrentDateInSpanishFormat()}</span>
           </>
         ) : (
           <>
@@ -160,29 +187,6 @@ export const Block = ({
         )}
       </div>
 
-      <div className={styles.footerContainer}>
-        <span className={styles.difficultyLabel}>
-          {isEditMode ? "Current difficulty: " : "Mined difficulty: "}
-          {isEditMode ? (
-            <select
-              className={styles.difficultySelect}
-              value={editableDifficulty}
-              onChange={(e) => setEditableDifficulty(e.target.value)}
-            >
-              {[...Array(8)].map((_, i) => (
-                <option key={i} value={i + 1}>
-                  0{i + 1}
-                </option>
-              ))}
-            </select>
-          ) : (
-            editableDifficulty
-          )}
-        </span>
-        <span className={!mining ? styles.nonceLabel : styles.miningNonce}>
-          Block Nonce: {!mining ? editableNonce : miningNonce}
-        </span>
-      </div>
       {!isEditMode && (
         <span className={styles.miningTimeContainer}>
           <span className={styles.miningTime}>
@@ -190,10 +194,6 @@ export const Block = ({
           </span>
         </span>
       )}
-      <span className={styles.previousHashContainer}>
-        <span className={styles.previousHash}>Previous Hash:</span>
-        <span className={styles.previousHashData}>{previousHash}</span>
-      </span>
 
       {isEditMode ? (
         <div className={styles.mineButtonContainer}>
@@ -203,6 +203,11 @@ export const Block = ({
           </button>
         </div>
       ) : null}
+
+      <span className={styles.previousHashContainer}>
+        <span className={styles.previousHash}>Previous Hash:</span>
+        <span className={styles.previousHashData}>{previousHash}</span>
+      </span>
     </div>
   )
 }

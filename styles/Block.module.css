@@ -10,7 +10,6 @@
 
 @media screen and (width <=640px) {
   .container {
-    padding: 1em;
     position: relative;
     width: 90%;
   }
@@ -19,19 +18,15 @@
 .headingContainer input {
   background: transparent;
   border: none;
-  color: #000;
+  color: white;
   font-size: 1.2em;
   margin: -8px 0;
   padding: 12px 16px;
   width: 100%;
 }
 
-.blockDataInput::placeholder {
-  color: #000;
-}
-
 .headingContainer input::placeholder {
-  color: #494949;
+  color: #fffa;
 }
 
 .headingContainer input:focus {
@@ -50,13 +45,21 @@
 @media screen and (width <=640px) {
   .headingContainer {
     flex-direction: column;
-    padding: 8px 0 0;
+    padding: 0 8px;
   }
 
   .headingContainer input {
-    padding-left: 0;
-    width: 100%;
+    padding-left: 12px;
+    width: calc(100% - 12px);
   }
+}
+
+.dateContainer {
+  align-items: center;
+  display: flex;
+  font-size: 1em;
+  justify-content: space-between;
+  padding: 0;
 }
 
 .previousHashContainer,
@@ -72,6 +75,11 @@
   background-color: #ffffff9c;
   border-radius: 15px 15px 0 0;
   margin-bottom: 8px;
+}
+
+.previousHashContainer {
+  background-color: #ffffff9c;
+  border-radius: 0 0 15px 15px;
 }
 
 .currentHash,
@@ -181,13 +189,16 @@
 }
 
 .difficultySelect {
-  background: #bddfe9;
+  align-self: center;
+  background: transparent;
   border: none;
   color: black;
+  display: flex;
   font-size: 1em;
+  font-weight: bold;
   margin: 0 0 0 4px;
   padding: 4px 8px;
-  width: 80px;
+  width: 60px;
 }
 
 .difficultySelect:focus {
@@ -208,12 +219,15 @@
 .blockDataInput {
   background: transparent;
   border: none;
-  color: black;
+  color: white;
   margin: 9px 0;
   min-height: 120px;
   padding: 16px;
   resize: none;
-  width: 100%;
+}
+
+.blockDataInput::placeholder {
+  color: #fffa;
 }
 
 .blockDataInput:focus {
@@ -222,13 +236,19 @@
 }
 
 .mineButtonContainer {
-  align-items: flex-start;
+  align-items: flex-end;
   color: black;
   display: flex;
   flex-direction: column;
   font-size: 1em;
   justify-content: center;
-  margin: 26px 0 8px;
+  margin: 60px 0 16px;
+}
+
+@media screen and (width <=640px) {
+  .mineButtonContainer {
+    margin: 80px 0 16px;
+  }
 }
 
 .mineButton {
@@ -301,7 +321,29 @@
   width: 100%;
 }
 
-.miningNonce {
+.nonceContainer,
+.nonceContainerMining {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 1em;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.nonceLabel {
+  font-size: 0.8em;
+  margin-right: 8px;
+}
+
+.nonceData {
+  color: black;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 0;
+}
+
+.nonceContainerMining {
   background: #49ee6c;
   padding: 6px;
 }
@@ -327,12 +369,33 @@
 }
 
 .footerContainer {
-  align-items: flex-start;
+  background-color: #2ba2ead4;
   color: #000;
   display: flex;
+  flex-direction: column;
   font-size: 1em;
-  justify-content: space-between;
+  gap: 12px;
+  justify-content: flex-end;
   margin: 0 0 16px;
+  padding: 8px;
+  position: absolute;
+  right: 0;
+  top: 154px;
+  width: 120px;
+}
+
+@media screen and (width <=640px) {
+  .footerContainer {
+    top: 170px;
+  }
+}
+
+.footerContainerLabel {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8em;
+  margin-right: 8px;
 }
 
 @media screen and (width <=640px) {
