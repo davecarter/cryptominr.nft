@@ -31,6 +31,7 @@
   line-height: 1.2;
   margin-bottom: 1rem;
   max-width: 800px;
+  text-shadow: 2px 2px 5px #00000080;
 }
 
 .subtitle {
@@ -39,6 +40,21 @@
   margin: 0 auto 1em;
   max-width: 600px;
   text-align: center;
+}
+
+.deleteBlocks {
+  background-color: #900;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 4em;
+  padding: 0.5em 1em;
+}
+
+.deleteBlocks:hover {
+  background-color: #700;
 }
 
 @media screen and (width <=640px) {

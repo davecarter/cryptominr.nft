@@ -3,6 +3,7 @@ import styles from "../styles/Block.module.css"
 import { getCalculatedHashService } from "domain/blockchain/service"
 import { useDomain } from "components/context"
 import { getCurrentDateInSpanishFormat, formatNumeral, getElapsedTime } from "utils"
+import { DateComponent } from "./Date"
 
 export const Block = ({
   id,
@@ -103,7 +104,7 @@ export const Block = ({
       console.error("Error during mining:", error)
     } finally {
       setEditableTitle("")
-      setEditableBlockData("Enter new block data")
+      setEditableBlockData("Enter block data")
       setMining(false)
     }
   }
@@ -114,49 +115,11 @@ export const Block = ({
         <span className={styles.currentHash}>Current Hash:</span>
         <span className={styles.currentHashData}> {!mining ? editableCurrentHash : window.hash}</span>
       </span>
-      <div className={styles.headingContainer}>
-        {isEditMode ? (
-          <input
-            disabled={mining}
-            type="text"
-            className={styles.titleInput}
-            value={editableTitle}
-            onChange={(e) => setEditableTitle(e.target.value)}
-            onFocus={() => setEditableTitle("")}
-            placeholder="Enter block title"
-          />
-        ) : (
-          <h2 className={styles.title}>{title}</h2>
-        )}
-        <h3 className={styles.blockID}>Block ID # {id}</h3>
+      <div className={styles.dateContainer}>
+        <span className={styles.dateInput}>{<DateComponent />}</span>
       </div>
-      <div className={styles.blockData}>
-        {isEditMode ? (
-          <>
-            <textarea
-              disabled={mining}
-              className={styles.blockDataInput}
-              value={editableBlockData}
-              onChange={(e) => setEditableBlockData(e.target.value)}
-              onFocus={() => setEditableBlockData("")}
-              placeholder="Enter block data"
-              onBlur={() => setEditableBlockData(editableBlockData || "Enter new block data")}
-            />
-            <span className={styles.dateInput}>{getCurrentDateInSpanishFormat()}</span>
-          </>
-        ) : (
-          <>
-            <span className={styles.blockDataLabelContainer}>
-              <span className={styles.blockDataLabel}>Block data:</span>
-              <span className={styles.blockDateLabel}>{date}</span>
-            </span>
-            <p className={styles.blockDataContent}>{blockData}</p>
-          </>
-        )}
-      </div>
-
       <div className={styles.footerContainer}>
-        <span className={styles.difficultyLabel}>
+        <span className={styles.footerContainerLabel}>
           {isEditMode ? "Current difficulty: " : "Mined difficulty: "}
           {isEditMode ? (
             <select
@@ -174,21 +137,58 @@ export const Block = ({
             editableDifficulty
           )}
         </span>
-        <span className={!mining ? styles.nonceLabel : styles.miningNonce}>
-          Block Nonce: {!mining ? editableNonce : miningNonce}
+        <span className={!mining ? styles.nonceContainer : styles.nonceContainerMining}>
+          <span className={styles.nonceLabel}>Block Nonce:</span>
+          <span className={styles.nonceData}>{!mining ? editableNonce : miningNonce}</span>
         </span>
       </div>
+      <div className={styles.headingContainer}>
+        {isEditMode ? (
+          <input
+            disabled={mining}
+            type="text"
+            className={styles.titleInput}
+            value={editableTitle}
+            onChange={(e) => setEditableTitle(e.target.value)}
+            onFocus={() => setEditableTitle("")}
+            placeholder="Enter block title"
+          />
+        ) : (
+          <h2 className={styles.title}>{title}</h2>
+        )}
+        {!isEditMode && (
+          <div className={styles.blockID}>
+            <span className={styles.blockIDLabel}>Block ID</span>
+            <span className={styles.blockIDNumber}>{id}</span>
+          </div>
+        )}
+      </div>
+      <div className={styles.blockData}>
+        {isEditMode ? (
+          <>
+            <textarea
+              disabled={mining}
+              className={styles.blockDataInput}
+              value={editableBlockData}
+              onChange={(e) => setEditableBlockData(e.target.value)}
+              onFocus={() => setEditableBlockData("")}
+              placeholder="Enter block data"
+              onBlur={() => setEditableBlockData(editableBlockData || "Enter block data")}
+            />
+          </>
+        ) : (
+          <div className={styles.blockDataMined}>{blockData}</div>
+        )}
+      </div>
+
       {!isEditMode && (
         <span className={styles.miningTimeContainer}>
           <span className={styles.miningTime}>
-            Mining time: {elapsedTime} <small>{`${"HH:MM:SS"}`}</small>
+            Mining time: <br />
+            {elapsedTime}
           </span>
         </span>
       )}
-      <span className={styles.previousHashContainer}>
-        <span className={styles.previousHash}>Previous Hash:</span>
-        <span className={styles.previousHashData}>{previousHash}</span>
-      </span>
 
       {isEditMode ? (
         <div className={styles.mineButtonContainer}>
@@ -198,6 +198,11 @@ export const Block = ({
           </button>
         </div>
       ) : null}
+
+      <span className={styles.previousHashContainer}>
+        <span className={styles.previousHash}>Previous Hash:</span>
+        <span className={styles.previousHashData}>{previousHash}</span>
+      </span>
     </div>
   )
 }
