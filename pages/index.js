@@ -8,12 +8,16 @@ import { TopBar } from "components/TopBar"
 import { Footer } from "components/Footer"
 import { debugLogger } from "utils"
 import { useRouter } from "next/router"
+import { Modal } from "components/Modal"
 
 export default function Home() {
   const { domain, blocks, updateBlocks } = useDomain()
   const [localBlocks, setLocalBlocks] = useState(blocks)
   const [currentBlock, setCurrentBlock] = useState({ currentHash: "0" })
   const [loading, setLoading] = useState(true)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const { deleteAllBlocks } = useDomain()
+
   const router = useRouter()
 
   useEffect(() => {
@@ -29,7 +33,6 @@ export default function Home() {
       setLoading(false)
       const initialBlocks = await domain.getBlocksUseCase.execute()
       setLocalBlocks(initialBlocks)
-      router.push("/")
     }, 1)
     setLocalBlocks(blocks)
     debugLogger("Initial blocks:", blocks)
@@ -68,6 +71,21 @@ export default function Home() {
     })
   }, [localBlocks])
 
+  const handleDeleteClick = () => {
+    setIsModalOpen(true)
+  }
+
+  const handleModalClose = () => {
+    setIsModalOpen(false)
+  }
+
+  const handleConfirmDelete = async () => {
+    setIsModalOpen(false)
+    await deleteAllBlocks()
+  }
+
+  const hasMinedBlocks = localBlocks.length > 0
+
   return (
     <div className={styles.container}>
       <Header />
@@ -94,8 +112,16 @@ export default function Home() {
               <Block blockKey={block.id} {...block} />
             </div>
           ))}
+        {hasMinedBlocks && (
+          <section className={styles.heroSection}>
+            <button className={styles.deleteBlocks} onClick={handleDeleteClick}>
+              Delete All Blocks
+            </button>
+          </section>
+        )}
       </main>
       <Footer />
+      {isModalOpen && <Modal onClose={handleModalClose} onConfirm={handleConfirmDelete} />}
     </div>
   )
 }
