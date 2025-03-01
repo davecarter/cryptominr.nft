@@ -10,6 +10,12 @@
   z-index: 0;
 }
 
+@media screen and (width <=900px) {
+  .sidebar {
+    display: none;
+  }
+}
+
 .sidebarContent {
   display: flex;
   flex-direction: column;

@@ -4,7 +4,7 @@
 }
 
 .footer {
-  background-color: #7fda9aab;
+  background-color: #ff7d48;
   color: black;
   display: flex;
   font-weight: bold;
@@ -16,7 +16,7 @@
 }
 
 .footerDocs {
-  background-color: #7fda9aab;
+  background-color: #ff7d48;
   color: black;
   display: flex;
   font-weight: bold;
@@ -25,6 +25,13 @@
   margin: 0 25%;
   padding: 1rem;
   width: 75%;
+}
+
+@media screen and (width <=900px) {
+  .footerDocs {
+    margin: 0;
+    width: 100%;
+  }
 }
 
 @media screen and (width <=640px) {
