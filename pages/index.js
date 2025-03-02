@@ -7,8 +7,8 @@ import { CURRENT_DIFFICULTY } from "domain/config"
 import { TopBar } from "components/TopBar"
 import { Footer } from "components/Footer"
 import { debugLogger } from "utils"
-import { useRouter } from "next/router"
 import { Modal } from "components/Modal"
+import { Performance } from "components/Performance"
 
 export default function Home() {
   const { domain, blocks, updateBlocks } = useDomain()
@@ -17,8 +17,6 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const { deleteAllBlocks } = useDomain()
-
-  const router = useRouter()
 
   useEffect(() => {
     domain.getLastBlockHashUseCase.execute().then((lastBlock) => {
@@ -98,6 +96,7 @@ export default function Home() {
             Explore the fundamentals of blockchain through an interactive, hands-on learning experience
           </p>
         </section>
+        <Performance />
         <Block
           difficulty={CURRENT_DIFFICULTY}
           isEditMode={true}

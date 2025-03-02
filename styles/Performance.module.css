@@ -1,0 +1,78 @@
+.container {
+  align-items: center;
+  background-color: #23a0dca8;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  justify-content: center;
+  letter-spacing: -1.5px;
+  min-width: 300px;
+  padding: 0;
+  text-shadow: 2px 2px 5px #00000080;
+}
+
+.container h2 {
+  background-color: #0006;
+  border-radius: 20px 20px 0 0;
+  color: #fff;
+  font-size: 1.2em;
+  margin: 0;
+  padding: 12px;
+  text-align: center;
+  width: 100%;
+}
+
+.cta {
+  background-color: #ff7d48;
+  border: none;
+  color: black;
+  font-size: 1em;
+  font-weight: bold;
+  margin: 16px;
+  padding: 12px;
+  width: 100%;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.ctaLoading {
+  animation: pulse 1s infinite ease-in-out;
+  background-color: #24e424;
+  border: none;
+  color: black;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  margin: 16px;
+  padding: 12px;
+  width: 100%;
+}
+.cta:hover {
+  background-color: #ff4a00;
+  cursor: pointer;
+}
+
+.sectionPerformance {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 0 20px;
+  width: 80%;
+}
+
+.data {
+  font-size: 1.2em;
+  margin: 0;
+}
