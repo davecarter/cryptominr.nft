@@ -44,6 +44,25 @@ export class BlockchainRepository {
     await db.clear(STORE_NAME)
   }
 
+  async getPerformance() {
+    let hashes = 0
+    const start = performance.now()
+    const duration = 10000
+
+    while (performance.now() - start < duration) {
+      const batchSize = 24 // My Ryzen 9 5900X has 24 threads
+      await Promise.all(
+        Array.from({ length: batchSize }, async () => {
+          await getCalculatedHashService({ data: "test" })
+          hashes++
+        }),
+      )
+    }
+
+    const elapsedTime = (performance.now() - start) / 1000
+    return Math.round(hashes / elapsedTime)
+  }
+
   async getMinedBlock({ blockData, difficulty }) {
     let nonce = 0
     let validHash = ""
