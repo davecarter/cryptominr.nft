@@ -1,19 +1,27 @@
 .container {
   align-items: center;
-  background-color: black;
+  background-color: #23a0dca8;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   font-weight: 700;
   justify-content: center;
   letter-spacing: -1.5px;
+  margin: 16px 0 0;
   min-width: 300px;
   padding: 0;
   text-shadow: 2px 2px 5px #00000080;
 }
 
+@media screen and (width <=640px) {
+  .container {
+    margin: 32px 0 0;
+    width: 80%;
+  }
+}
+
 .container h2 {
-  background-color: #0006;
+  background-color: black;
   border-radius: 20px 20px 0 0;
   color: #fff;
   font-size: 1.2em;
