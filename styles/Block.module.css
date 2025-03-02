@@ -172,14 +172,13 @@
   display: flex;
   flex-direction: column;
   font-size: 0.6em;
-  height: 72px;
   margin-top: 0;
   min-width: 100px;
   padding: 16px;
   position: absolute;
   right: 0;
   text-align: center;
-  top: 285px;
+  top: 298px;
   width: 120px;
 }
 
@@ -312,7 +311,7 @@
   flex-direction: column;
   font-size: 1em;
   justify-content: center;
-  margin: 70px 0 16px;
+  margin: 136px 0 16px;
 }
 
 @media screen and (width <=640px) {
@@ -356,42 +355,42 @@
 
 .miningButton {
   animation: mining-stripes 10.5s infinite linear;
-  background: #003fff;
+  background: #2193d9d4;
   background: linear-gradient(
     -45deg,
     transparent 25%,
-    #003fff 25%,
-    #003fff 50%,
+    #2193d9d4 25%,
+    #2193d9d4 50%,
     transparent 50%,
     transparent 75%,
-    #003fff 75%
+    #2193d9d4 75%
   );
   background: linear-gradient(
     -45deg,
     transparent 25%,
-    #003fff 25%,
-    #003fff 50%,
+    #2193d9d4 25%,
+    #2193d9d4 50%,
     transparent 50%,
     transparent 75%,
-    #003fff 75%
+    #2193d9d4 75%
   );
   background: linear-gradient(
     -45deg,
     transparent 25%,
-    #003fff 25%,
-    #003fff 50%,
+    #2193d9d4 25%,
+    #2193d9d4 50%,
     transparent 50%,
     transparent 75%,
-    #003fff 75%
+    #2193d9d4 75%
   );
   background: linear-gradient(
     -45deg,
     transparent 25%,
-    #003fff 25%,
-    #003fff 50%,
+    #2193d9d4 25%,
+    #2193d9d4 50%,
     transparent 50%,
     transparent 75%,
-    #003fff 75%
+    #2193d9d4 75%
   );
   background-size: 27px 27px;
   border: none;
@@ -399,7 +398,7 @@
   color: black;
   font-size: 1em;
   font-weight: bold;
-  height: 50px;
+  height: 94px;
   position: absolute;
   width: 100%;
 }
@@ -421,13 +420,13 @@
 
 .nonceData {
   color: black;
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: bold;
   padding: 0;
 }
 
 .nonceContainerMining {
-  background: #49ee6c;
+  background: #ff7d48;
   padding: 6px;
 }
 
@@ -463,13 +462,13 @@
   padding: 8px;
   position: absolute;
   right: 0;
-  top: 171px;
+  top: 188px;
   width: 120px;
 }
 
 @media screen and (width <=640px) {
   .footerContainer {
-    top: 170px;
+    top: 188px;
   }
 }
 
@@ -479,6 +478,7 @@
   flex-direction: column;
   font-size: 0.8em;
   margin-right: 8px;
+  text-align: center;
 }
 
 @media screen and (width <=640px) {
