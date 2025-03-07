@@ -92,14 +92,6 @@ export default function Home() {
       <div className="bg-gradient-to-b from-secondary to-background pb-12 pt-16 md:pb-16 md:pt-24">
         <div className="container mx-auto px-4 max-w-4xl">
           <section className="flex flex-col items-center text-center">
-            <div className="inline-flex items-center px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-sm mb-4">
-              <span className="relative flex h-2 w-2 mr-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-              </span>
-              Now with Web3 integration
-            </div>
-            
             <h1 className="text-3xl md:text-5xl font-bold leading-tight md:leading-tight mb-6">
               Your gateway to understanding <span className="gradient-heading">Blockchain technology</span>
             </h1>
