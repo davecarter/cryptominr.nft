@@ -20,7 +20,6 @@ export const Footer = () => {
               David Garcia
             </a>
             {" & "}
-            Designed by{" "}
             <a 
               href="https://github.com/Lozadaa" 
               target="_blank" 
@@ -29,8 +28,7 @@ export const Footer = () => {
             >
               Richard Lozada
             </a>
-            . Learn how blockchain works.
-          </p>
+            </p>
         </div>
         <div className="flex items-center gap-4">
           <a

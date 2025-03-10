@@ -89,7 +89,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background overflow-hidden">
       <Header />
       <TopBar />
-      <div className="bg-gradient-to-b from-secondary to-background pb-12 pt-16 md:pb-16 md:pt-24">
+      <div className="bg-gradient-to-b from-secondary to-background pb-12 pt-16 md:pb-16 md:pt-24 mt-4">
         <div className="container mx-auto px-4 max-w-4xl">
           <section className="flex flex-col items-center text-center">
             <h1 className="text-3xl md:text-5xl font-bold leading-tight md:leading-tight mb-6">

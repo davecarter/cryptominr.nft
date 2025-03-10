@@ -8,7 +8,7 @@ export default function Docs() {
   const router = useRouter()
 
   return (
-    <div className="flex flex-col min-h-screen bg-background overflow-hidden">
+    <div className="flex flex-col min-h-screen bg-background overflow-hidden mt-4">
       <Header />
       <TopBar />
       <div className="bg-gradient-to-b from-secondary to-background pb-12 pt-16 md:pb-16 md:pt-24">
