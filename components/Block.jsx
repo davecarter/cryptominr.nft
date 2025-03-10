@@ -153,11 +153,11 @@ export const Block = ({
 
   return (
     <div className="relative w-full border rounded-lg p-6 shadow-sm bg-card text-card-foreground">
-      <div className="mb-4 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4">
+      <div className="mb-4 grid grid-cols-1 gap-4">
         <div className="flex flex-col">
           <span className="text-sm text-muted-foreground mb-1">Current Hash:</span>
           <div className={cn(
-            "block-hash text-xs font-mono truncate transition-all duration-300",
+            "block-hash text-md font-mono truncate transition-all duration-300",
             hashChanged && "bg-primary/20 text-primary font-semibold animate-pulse"
           )}>
             {!mining ? editableCurrentHash : window.hash}

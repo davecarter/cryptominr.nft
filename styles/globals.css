@@ -235,7 +235,7 @@
   }
   
   .block-hash {
-    @apply font-mono text-xs sm:text-sm break-all;
+    @apply font-mono text-sm sm:text-sm break-all;
     max-width: 100%;
     overflow-wrap: break-word;
   }

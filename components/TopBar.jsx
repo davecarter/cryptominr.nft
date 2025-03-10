@@ -73,7 +73,7 @@ export const TopBar = () => {
                 router.pathname === "/" ? "text-primary" : "text-muted-foreground"
               }`}
             >
-              Home
+              Build
             </Link>
             <Link 
               href="/docs" 
@@ -81,7 +81,7 @@ export const TopBar = () => {
                 router.pathname === "/docs" ? "text-primary" : "text-muted-foreground"
               }`}
             >
-              Documentation
+              Learn
             </Link>
           </nav>
         </div>

@@ -121,19 +121,6 @@ export default function Home() {
               </div>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">Blockchain</h2>
             </div>
-            {hasMinedBlocks && (
-              <button 
-                className="shadcn-button shadcn-button-destructive px-4 py-2 flex items-center gap-2 group" 
-                onClick={handleDeleteClick}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:animate-shake">
-                  <path d="M3 6h18"></path>
-                  <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                  <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                </svg>
-                Delete All Blocks
-              </button>
-            )}
           </div>
 
           {/* Mining Block at the beginning of the timeline */}
@@ -228,6 +215,19 @@ export default function Home() {
                 </p>
               </div>
             </div>
+          )}
+          {hasMinedBlocks && (
+            <button 
+              className="shadcn-button shadcn-button-destructive px-4 py-2 mt-4 w-full md:w-auto flex items-center gap-2 group" 
+              onClick={handleDeleteClick}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:animate-shake">
+                <path d="M3 6h18"></path>
+                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+              </svg>
+              Delete All Blocks
+            </button>
           )}
         </section>
       </main>
