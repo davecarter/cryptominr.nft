@@ -86,7 +86,7 @@ export default function Home() {
   const hasMinedBlocks = localBlocks.length > 0
 
   return (
-    <div className="flex flex-col min-h-screen bg-background overflow-hidden">
+    <div className="mt-4 md:mt-1 flex flex-col min-h-screen bg-background overflow-hidden">
       <Header />
       <TopBar />
       <div className="bg-gradient-to-b from-secondary to-background pb-12 pt-16 md:pb-16 md:pt-24 mt-4">
@@ -156,7 +156,7 @@ export default function Home() {
                 .slice()
                 .sort((a, b) => b.id - a.id)
                 .map((block, index, arr) => (
-                  <div key={block.id} className="relative mb-16 last:mb-0">
+                  <div key={block.id} className="relative mb-16 last:mb-0 bg-navy">
                     {/* Timeline connector */}
                     <div className="absolute left-1/2 transform -translate-x-1/2 -top-12 w-0.5 h-12 bg-primary/40"></div>
                     
