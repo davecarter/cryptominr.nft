@@ -1,71 +1,96 @@
-import { useEffect, useState } from "react"
-import {
-  sidebar,
-  sidebarContent,
-  sidebarTitle,
-  sidebarList,
-  sidebarListItem,
-  activeLink,
-} from "../styles/Sidebar.module.css"
+import { useState, useEffect, useRef } from "react"
+import { HamburgerMenuIcon, Cross1Icon } from "@radix-ui/react-icons"
+import { cn } from "../lib/utils"
 
 export const Sidebar = () => {
-  const [active, setActive] = useState("")
+  const [activeSection, setActiveSection] = useState("")
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  
+  // Array of all section IDs
+  const sectionIds = [
+    "what-problem-solves-a-blockchain",
+    "decentralized-execution",
+    "cryptographically-protected",
+    "hashing-functions"
+  ]
+  
+  const sectionLabels = {
+    "what-problem-solves-a-blockchain": "What problem solves a Blockchain?",
+    "decentralized-execution": "Decentralized execution",
+    "cryptographically-protected": "Cryptographically protected",
+    "hashing-functions": "Hashing functions"
+  }
+
   useEffect(() => {
-    const anchors = document.querySelectorAll("aside > div > ul > li > a")
-
-    anchors.forEach((anchor) =>
-      anchor.addEventListener("click", function (e) {
-        e.preventDefault()
-        const target = document.querySelector(this.getAttribute("href"))
-        if (target) {
-          setActive(target.id)
-          const offset = 120
-          const targetPosition = target.offsetTop - offset
-
-          window.scrollTo({
-            top: targetPosition,
-            behavior: "smooth",
-          })
-        }
-      }),
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      { threshold: 0.5 }
     )
 
-    return () => anchors.forEach((anchor) => anchor.removeEventListener("click", () => {}))
+    sectionIds.forEach((id) => {
+      const element = document.getElementById(id)
+      if (element) observer.observe(element)
+    })
+
+    return () => {
+      sectionIds.forEach((id) => {
+        const element = document.getElementById(id)
+        if (element) observer.unobserve(element)
+      })
+    }
   }, [])
 
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id)
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 100,
+        behavior: "smooth",
+      })
+      setActiveSection(id)
+      setIsMobileMenuOpen(false)
+    }
+  }
+
   return (
-    <aside className={sidebar}>
-      <div className={sidebarContent}>
-        <h2 className={sidebarTitle}>Table of Contents</h2>
-        <ul className={sidebarList}>
-          <li className={sidebarListItem}>
-            <a
-              href="#what-problem-solves-a-blockchain"
-              className={active === "what-problem-solves-a-blockchain" ? activeLink : ""}
-            >
-              What problem solves a Blockchain?
-            </a>
-          </li>
-          <li className={sidebarListItem}>
-            <a href="#decentralized-execution" className={active === "decentralized-execution" ? activeLink : ""}>
-              Decentralized execution
-            </a>
-          </li>
-          <li className={sidebarListItem}>
-            <a
-              href="#cryptographically-protected"
-              className={active === "cryptographically-protected" ? activeLink : ""}
-            >
-              Cryptographically protected
-            </a>
-          </li>
-          <li className={sidebarListItem}>
-            <a href="#hashing-functions" className={active === "hashing-functions" ? activeLink : ""}>
-              Hashing functions
-            </a>
-          </li>
-        </ul>
+    <aside className="w-full lg:w-64 relative">
+      <div className="flex items-center justify-between py-3 lg:hidden">
+        <h3 className="text-lg font-medium text-foreground">Navigation</h3>
+        <button 
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="p-2 rounded-md hover:bg-secondary/80 text-foreground"
+          aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+        >
+          {isMobileMenuOpen ? <Cross1Icon className="h-5 w-5" /> : <HamburgerMenuIcon className="h-5 w-5" />}
+        </button>
       </div>
+      
+      <nav className={`lg:block ${isMobileMenuOpen ? 'block' : 'hidden'} mt-2 lg:mt-0`}>
+        <div className="sticky top-20 overflow-y-auto max-h-[80vh] p-3 rounded-lg bg-secondary/10">
+          <ul className="space-y-1">
+            {sectionIds.map((id) => (
+              <li key={id}>
+                <button
+                  onClick={() => scrollToSection(id)}
+                  className={`block w-full text-left px-3 py-2 rounded-md transition-colors text-sm ${
+                    activeSection === id
+                      ? "bg-primary text-primary-foreground font-medium"
+                      : "text-foreground hover:bg-secondary/50"
+                  }`}
+                >
+                  {sectionLabels[id]}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
     </aside>
   )
 }

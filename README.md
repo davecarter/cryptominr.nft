@@ -105,4 +105,5 @@ This project is licensed under the [MIT License](LICENSE). Feel free to use, mod
 
 - Inspired by the need to simplify blockchain concepts for educational purposes.
 - Built with ❤️ by [David Garcia](https://github.com/davecarter).
+- Designed with ❤️ by [Richard Lozada](https://github.com/lozadaa).
 
