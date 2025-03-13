@@ -156,7 +156,7 @@ export default function Home() {
                 .slice()
                 .sort((a, b) => b.id - a.id)
                 .map((block, index, arr) => (
-                  <div key={block.id} className="relative mb-16 last:mb-0 bg-[#000080]">
+                  <div key={block.id} className="relative mb-16 last:mb-0 bg-[#021f48]">
                     {/* Timeline connector */}
                     <div className="absolute left-1/2 transform -translate-x-1/2 -top-12 w-0.5 h-12 bg-primary/40"></div>
                     
