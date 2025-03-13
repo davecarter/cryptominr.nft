@@ -124,7 +124,7 @@ export default function Home() {
           </div>
 
           {/* Mining Block at the beginning of the timeline */}
-          <div className="relative mb-16 z-10 bg-[#000080]">
+          <div className="relative mb-16 z-10">
             <div className="shadcn-card border-2 border-primary/30 shadow-lg">
               <div className="shadcn-card-header bg-primary/5 border-b border-primary/10">
                 <h3 className="text-xl md:text-2xl font-semibold text-foreground">Create a New Block</h3>
