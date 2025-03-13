@@ -125,7 +125,7 @@ export default function Home() {
 
           {/* Mining Block at the beginning of the timeline */}
           <div className="relative mb-16 z-10">
-            <div className="shadcn-card border-2 border-primary/30 shadow-lg bg-color-[#021f48]">
+            <div className="shadcn-card border-2 border-primary/30 shadow-lg bg-[#021f48]">
               <div className="shadcn-card-header bg-primary/5 border-b border-primary/10">
                 <h3 className="text-xl md:text-2xl font-semibold text-foreground">Create a New Block</h3>
                 <p className="text-sm md:text-base text-muted-foreground">Add your own block to the blockchain</p>
